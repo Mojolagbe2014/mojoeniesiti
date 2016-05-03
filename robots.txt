@@ -1,0 +1,27 @@
+User-agent: *
+
+Disallow: /css/
+
+Disallow: /css/all-css.css
+
+Disallow: /images/
+
+Disallow: /admin/
+
+Disallow: /scripts/
+
+Disallow: /tools/
+
+Disallow: /cdn-cgi/
+
+user-agent: AhrefsBot
+disallow: / 
+
+User-agent: Googlebot 
+
+Allow: /
+
+User-Agent: bingbot
+Allow: /
+
+Sitemap: https://www.nigerianseminarsandtrainings.com/sitemap.xml

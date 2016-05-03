@@ -1,0 +1,118 @@
+ErrorDocument 404 /404error.php
+
+# ALLOW USER BY IP
+<Limit GET POST>
+ allow from 199.27.128.0/21
+ allow from 173.245.48.0/20
+ allow from 103.21.244.0/22
+ allow from 103.22.200.0/22
+ allow from 103.31.4.0/22
+ allow from 141.101.64.0/18
+ allow from 108.162.192.0/18
+ allow from 190.93.240.0/20
+ allow from 188.114.96.0/20
+ allow from 197.234.240.0/22
+ allow from 198.41.128.0/17
+ allow from 162.158.0.0/15
+ 
+allow from 2400:cb00::/32
+allow from 2606:4700::/32
+allow from 2803:f800::/32
+allow from 2405:b500::/32
+allow from 2405:8100::/32
+</Limit>
+
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
+
+RewriteRule ^events/([0-9]+)/([^/]+)/?$ event_detail.php?detail=$1 [NC,L]
+
+RewriteRule ^events/all/([^/]+)/([0-9]+)/?$ all_courses.php?page=$2 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/?$ all_courses.php?category=$1&detail=true [NC,L]
+
+RewriteRule ^vacancy/full/([0-9]+)/([^/]+)/?$ vacancy_detail.php?detail=$1 [NC,L]
+
+RewriteRule ^training_providers/countries/([0-9]+)/([^/]+)/?$ training_providers_category.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^training_providers/state/([0-9]+)/([^/]+)/?$ training_providers_category.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^trainingCategory/([^/]+)/?$ training_providers_category.php [NC,L]
+
+RewriteRule ^([^/]+)/([^/]+)/([0-9]+)/?$ $1.php?$2=$3 [NC,L]
+
+RewriteRule ^login/([^/]+)/?$ login.php?login=$1 [NC,L]
+
+RewriteRule ^rss?$ rss.php [NC,L]
+
+RewriteRule ^rss/?$ rss.php [NC,L]
+
+RewriteRule ^rss.xml/?$ rss.php [NC,L]
+
+
+RewriteRule ^news/([0-9]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^news/([0-9]+)/([^/]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^newsletter/([0-9]+)/([^/]+)/?$ newsletter.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^e-books/([0-9]+)/([^/]+)/?$ books.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^download/([0-9]+)/([^/]+)/?$ tools/download.php?id=$1 [NC,L]
+
+RewriteRule ^download_article/([0-9]+)/([^/]+)/?$ tools/downloadArt.php?fullarticle=$1 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/?$ all_courses.php?category=$1 [NC,L]
+
+RewriteRule ^training_providersTraining?$ training_providers_category.php [NC,L]
+
+RewriteRule ^articles-pdf/before-it-happens-2u.pdf?$ articles-pdf/1.01.ArtOfTheStart.pdf [NC,L]
+
+RewriteRule ^articles/(.+\.pdf)$ articles-pdf/$1 [L]
+
+RewriteRule ^article/full/([0-9]+)/([^/]+)/?$ fullArticle.php?fullarticle=$1&page=$1 [NC,L]
+RewriteRule ^quote/full/([0-9]+)/([^/]+)/?$ quoteFull.php?quoteID=$1&page=$1 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?category=$1&page=$4 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/?$ all_courses.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?countryid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/?$ all_courses.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?stateid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^eventsLocation/([^/]+)/?$ location.php [NC,L]
+
+RewriteRule ^trianingProvider/([^/]+)/?$ training_location.php [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^emanagers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^suppliers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^venues/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+
+RewriteRule  ^articles-pdf/bootstrappers articles-pdf/BootstrappersBible.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/nigeria articles-pdf/Nigeria_Confronts_Post-Crisis_Global_Economic_Realities.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/28.05.accountabilitymanagers.pdf articles-pdf/28.05.AccountabilityManagers.pdf [NC,L]
+
+RewriteRule  ^articles/002.roadmaptopower articles-pdf/002.RoadmapToPowerSectorReformInNigeria.pdf [NC,L]
+
+
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+

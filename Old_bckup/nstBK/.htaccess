@@ -1,0 +1,317 @@
+ErrorDocument 404 /404error.php
+
+<IfModule mod_deflate.c>
+
+# Force compression for mangled headers.
+# http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+# (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+#  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+#  as `AddOutputFilterByType` is still in the core directives).
+
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+application/javascript \
+application/json \
+application/rss+xml \
+application/vnd.ms-fontobject \
+application/x-font-ttf \
+application/x-web-app-manifest+json \
+application/xhtml+xml \
+application/xml \
+font/opentype \
+image/svg+xml \
+image/x-icon \
+text/css \
+text/html \
+text/plain \
+text/x-component \
+text/xml
+</IfModule>
+
+</IfModule>
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 month"
+ExpiresByType image/jpeg "access 1 month"
+ExpiresByType image/gif "access 1 month"
+ExpiresByType image/png "access 1 month"
+ExpiresByType text/css "access 1 week"
+ExpiresByType text/html "access 1 week"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+
+RewriteEngine on
+
+RewriteCond %{HTTPS} off
+# First rewrite to HTTPS:
+# Don't put www. here. If it is already there it will be included, if not
+# the subsequent rule will catch it.
+
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Now, rewrite any request to the wrong domain to use www.
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
+
+RewriteRule ^events/([0-9]+)/([^/]+)/?$ event-detail.php?detail=$1 [NC,L]
+
+RewriteRule ^events/all/([^/]+)/([0-9]+)/?$ all_courses.php?page=$2 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/?$ all_courses.php?category=$1&detail=true [NC,L]
+
+RewriteRule ^vacancy/full/([0-9]+)/([^/]+)/?$ vacancy_detail.php?detail=$1 [NC,L]
+
+RewriteRule ^training-providers/countries/([0-9]+)/([^/]+)/?$ training-providers-category.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^training-providers/countries/?$ training-providers-category.php?countries[NC,L]
+
+RewriteRule ^training-providers/state/([0-9]+)/([^/]+)/?$ training-providers-category.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^trainingCategory/([^/]+)/?$ training-providers-category.php [NC,L]
+
+RewriteRule ^([^/]+)/([^/]+)/([0-9]+)/?$ $1.php?$2=$3 [NC,L]
+
+RewriteRule ^login/([^/]+)/?$ login.php?login=$1 [NC,L]
+
+RewriteRule ^rss?$ rss.php [NC,L]
+
+RewriteRule ^rss/?$ rss.php [NC,L]
+
+RewriteRule ^rss.xml/?$ rss.php [NC,L]
+
+RewriteRule ^news/([0-9]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^news/([0-9]+)/([^/]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^newsletter/([0-9]+)/([^/]+)/?$ newsletter.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^e-books/([0-9]+)/([^/]+)/?$ books.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^download/([0-9]+)/([^/]+)/?$ tools/download.php?id=$1 [NC,L]
+
+RewriteRule ^download_article/([0-9]+)/([^/]+)/?$ tools/downloadArt.php?fullarticle=$1 [NC,L]
+
+RewriteRule ^download-guide/([^/]+)/?$ tools/downloadGuide.php?guide=$1 [NC]
+
+RewriteRule ^downloadicon/([^/]+)/?$ tools/downloadIcon.php?file=$1 [NC]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/?$ all_courses.php?category=$1 [NC,L]
+
+RewriteRule ^training_providersTraining?$ training_providers_category.php [NC,L]
+
+RewriteRule ^articles-pdf/before-it-happens-2u.pdf?$ articles-pdf/1.01.ArtOfTheStart.pdf [NC,L]
+
+RewriteRule ^articles/(.+\.pdf)$ articles-pdf/$1 [L]
+
+RewriteRule ^article/full/([0-9]+)/([^/]+)/?$ fullArticle.php?fullarticle=$1&page=$1 [NC,L]
+RewriteRule ^quote/full/([0-9]+)/([^/]+)/?$ quoteFull.php?quoteID=$1&page=$1 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?category=$1&page=$4 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/?$ all_courses.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?countryid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^events/countries/?$ all_courses.php?countries [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/?$ all_courses.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?stateid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^eventsLocation/([^/]+)/?$ location.php [NC,L]
+
+RewriteRule ^trianingProvider/([^/]+)/?$ training_location.php [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^emanagers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^suppliers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^venues/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^courses/business/([^/]+)/?$ business_courses.php?courses=$1 [NC,L]
+
+RewriteRule ^courses/business/([^/]+)/page/([0-9]+)/?$ business_courses.php?courses=$1&page=$2 [NC,L]
+
+RewriteRule ^author/([^/]+)/?$ authors-articles.php?author=$1 [NC]
+
+RewriteRule  ^articles-pdf/bootstrappers articles-pdf/BootstrappersBible.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/nigeria articles-pdf/Nigeria_Confronts_Post-Crisis_Global_Economic_Realities.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/28.05.accountabilitymanagers.pdf articles-pdf/28.05.AccountabilityManagers.pdf [NC,L]
+
+RewriteRule  ^articles/002.roadmaptopower articles-pdf/002.RoadmapToPowerSectorReformInNigeria.pdf [NC,L]
+
+RewriteRule  ^all_event all-event.php [NC,L]
+
+RewriteRule  ^all_vacancies all-vacancies.php [NC,L]
+
+RewriteRule  ^all_event_tag_search all-event-tag-search.php [NC,L]
+
+RewriteRule  ^add_event add-event.php [NC,L]
+
+RewriteRule  ^add_video add-video.php [NC,L]
+
+RewriteRule  ^biz_info biz-info.php [NC,L]
+
+RewriteRule  ^videos_all videos-all.php [NC,L]
+
+RewriteRule  ^terms_of_use terms-of-use.php [NC,L]
+
+RewriteRule  ^privacy_policy privacy-policy.php [NC,L]
+
+RewriteRule  ^sitemap_page sitemap-page.php [NC,L]
+
+RewriteRule  ^event_managers event-managers.php [NC,L]
+
+RewriteRule  ^past_event past-event.php [NC,L]
+
+RewriteRule  ^training_providers training-providers.php [NC,L]
+
+RewriteRule  ^video_watch video-watch.php [NC,L]
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+#RewriteCond %{HTTP_REFERER} !^http://m.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://m.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.m.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.m.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+
+# Permanent URL redirect
+
+Redirect 301 /category/administrative-secretarial https://www.nigerianseminarsandtrainings.com/category/administrative-and-secretarial
+
+Redirect 301 /category/administrative-secretarial.php https://www.nigerianseminarsandtrainings.com/category/administrative-and-secretarial
+
+
+Redirect 301 /category/admin-secretarial https://www.nigerianseminarsandtrainings.com/category/administrative-and-secretarial
+
+Redirect 301 /category/agriculture-and-rural-dev https://www.nigerianseminarsandtrainings.com/category/agriculture-and-rural-development
+
+Redirect 301 /category/agriculture-and-rural-dev.php https://www.nigerianseminarsandtrainings.com/category/agriculture-and-rural-development
+
+
+Redirect 301 /category/entrepreneurship-biz-dev https://www.nigerianseminarsandtrainings.com/category/entrepreneurship-and-business-development.php
+
+Redirect 301 /category/aviation-maritime https://www.nigerianseminarsandtrainings.com/category/aviation-and-maritime
+
+Redirect 301 /category/aviation-maritime.php https://www.nigerianseminarsandtrainings.com/category/aviation-and-maritime
+
+
+Redirect 301 /category/banking-insurance https://www.nigerianseminarsandtrainings.com/category/banking-and-insurance
+
+Redirect 301 /category/banking-insurance.php https://www.nigerianseminarsandtrainings.com/category/banking-and-insurance
+
+
+Redirect 301 /category/category/customer-service-and-support https://www.nigerianseminarsandtrainings.com/category/category/customer-service-and-support
+
+Redirect 301 /category/engineering-technical-skills https://www.nigerianseminarsandtrainings.com/category/engineering-and-technical-skills
+
+Redirect 301 /category/engineering-technical-skills.php https://www.nigerianseminarsandtrainings.com/category/engineering-and-technical-skills
+
+
+Redirect 301 /category/entrepreneurship-and-biz-dev https://www.nigerianseminarsandtrainings.com/category/entrepreneurship-biz-dev
+
+Redirect 301 /category/entrepreneurship-biz-dev.php https://www.nigerianseminarsandtrainings.com/category/entrepreneurship-biz-dev
+
+
+Redirect 301 /category/finance-accounting https://www.nigerianseminarsandtrainings.com/category/finance-and-accounting
+
+Redirect 301 /category/finance-accounting.php https://www.nigerianseminarsandtrainings.com/category/finance-and-accounting
+
+
+Redirect 301 /category/info-communications-tech https://www.nigerianseminarsandtrainings.com/category/information-and-communications-technology
+
+Redirect 301 /category/info-communications-tech.php https://www.nigerianseminarsandtrainings.com/category/information-and-communications-technology
+
+Redirect 301 /category/info-and-communications-tech https://www.nigerianseminarsandtrainings.com/category/information-and-communications-technology
+
+Redirect 301 /category/leadership-self-development https://www.nigerianseminarsandtrainings.com/category/leadership-and-self-development
+
+Redirect 301 /category/leadership-self-development.php https://www.nigerianseminarsandtrainings.com/category/leadership-and-self-development
+
+
+Redirect 301 /category/legal-legislative https://www.nigerianseminarsandtrainings.com/category/legal-and-legislative
+
+Redirect 301 /category/legal-legislative.php https://www.nigerianseminarsandtrainings.com/category/legal-and-legislative
+
+
+Redirect 301 /category/logistics-supply-chain-mgt https://www.nigerianseminarsandtrainings.com/category/logistics-and-supply-chain-management
+
+Redirect 301 /category/logistics-and-supply-chain-mgt https://www.nigerianseminarsandtrainings.com/category/logistics-and-supply-chain-management
+
+Redirect 301 /category/logistics-supply-chain-mgt.php https://www.nigerianseminarsandtrainings.com/category/logistics-and-supply-chain-management
+
+
+Redirect 301 /category/research-meth-analytics https://www.nigerianseminarsandtrainings.com/category/research-methodology-and-analytics
+
+Redirect 301 /category/research-meth-analytics.php https://www.nigerianseminarsandtrainings.com/category/research-methodology-and-analytics
+
+Redirect 301 /category/research-meth-and-analytics https://www.nigerianseminarsandtrainings.com/category/research-methodology-and-analytics
+
+
+Redirect 301 /category/security-crime-prevention https://www.nigerianseminarsandtrainings.com/category/security-and-crime-prevention
+
+Redirect 301 /category/security-crime-prevention.php https://www.nigerianseminarsandtrainings.com/category/security-and-crime-prevention
+
+
+Redirect 301 /category/marketing-sales-mgt https://www.nigerianseminarsandtrainings.com/category/marketing-and-sales-management
+
+Redirect 301 /category/marketing-and-sales-mgt https://www.nigerianseminarsandtrainings.com/category/marketing-and-sales-management
+
+Redirect 301 /category/marketing-sales-mgt.php https://www.nigerianseminarsandtrainings.com/category/marketing-and-sales-management
+
+
+Redirect 301 /category/pre-retirement-new-beginnings https://www.nigerianseminarsandtrainings.com/category/pre-retirement-and-new-beginnings
+
+Redirect 301 /category/pre-retirement-new-beginnings.php https://www.nigerianseminarsandtrainings.com/category/pre-retirement-and-new-beginnings
+
+Redirect 301 /category/time-self-management https://www.nigerianseminarsandtrainings.com/category/time-and-self-management
+
+Redirect 301 /category/time-self-management.php https://www.nigerianseminarsandtrainings.com/category/time-and-self-management
+
+
+Redirect 301 /category/health-hse https://www.nigerianseminarsandtrainings.com/category/health-and-hse
+
+Redirect 301 /category/health-hse.php https://www.nigerianseminarsandtrainings.com/category/health-and-hse
+
+
+Redirect 301 /category/customer-service-support https://www.nigerianseminarsandtrainings.com/category/customer-service-and-support
+
+Redirect 301 /category/customer-service-support.php https://www.nigerianseminarsandtrainings.com/category/customer-service-and-support
+
+Redirect 301 /category/internal-audit-fraud.php https://www.nigerianseminarsandtrainings.com/category/internal-audit-and-fraud
+
+Redirect 301 /category/internal-audit-fraud https://www.nigerianseminarsandtrainings.com/category/internal-audit-and-fraud

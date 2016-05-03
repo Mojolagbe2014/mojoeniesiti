@@ -1,0 +1,16 @@
+<form action="{$url}/index.php?a=admin" method="post">
+	<div class="halfContent"><h3>Title of your website</h3>
+		<div class="small">This is the title of the website, and should be the domain name, or something similar...</div><br />
+			<div class="inputContainerAdmin">
+				Title: <input type="text" name="title" value="{$currentTitle}">
+			</div>
+		</div>
+	<div class="halfContent"><h3>Default city</h3>
+		<div class="small">If the script can't find the visitor IP location, will use this city instead.</div><br />
+			<div class="inputContainerAdmin">
+				City: <input type="text" name="city" value="{$currentCity}">
+			</div>
+		</div>
+	<input type="submit" name="general" value="Save Settings">
+	<br><br>
+</form>

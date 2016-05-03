@@ -1,0 +1,20 @@
+#Specify the error document
+ ErrorDocument 404 http://localhost/nigerianseminars/404error.php
+
+#Default Language Settings
+  DefaultLanguage en
+
+#Disable directory listing 
+  Options All -Indexes
+
+#Disable the server signature like [Apache/2.4.9 (Win64) PHP/5.5.12 Server at localhost Port 80]
+  ServerSignature	Off
+
+#Remove the .php at the end of each file
+ RewriteEngine on
+
+ RewriteCond %{REQUEST_FILENAME} !-d
+
+ RewriteCond %{REQUEST_FILENAME}\.php -f
+
+ RewriteRule ^([^/]+)/?$ $1.php [NC,L]

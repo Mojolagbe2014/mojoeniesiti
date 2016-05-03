@@ -1,0 +1,154 @@
+<?php
+require_once("../scripts/config.php");
+require_once("../scripts/functions.php");
+$advert = "News";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta property="og:image" content="http://localhost/nigerianseminars/images/news_image_BIG.png"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:image:width" content="250"/>
+<meta property="og:image:height" content="250"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="http://localhost/nigerianseminars/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<title>FCTA to refocus, fund Abuja Enterprise Agency – Akinjide</title>
+<meta name="description" content="
+	The Minister of State for the Federal Capital Territory, Oloye Olajumoke Akinjide disclosed that the Administration would refocus - 16"/>
+<meta name="dcterms.description" content="
+	The Minister of State for the Federal Capital Territory, Oloye Olajumoke Akinjide disclosed that the Administration would refocus - 16" />
+<meta property="og:title" content="FCTA to refocus, fund Abuja Enterprise Agency – Akinjide" />
+<meta property="og:description" content="
+	The Minister of State for the Federal Capital Territory, Oloye Olajumoke Akinjide disclosed that the Administration would refocus - 16" />
+<meta property="twitter:title" content="FCTA to refocus, fund Abuja Enterprise Agency – Akinjide" />
+<meta property="twitter:description" content="
+	The Minister of State for the Federal Capital Territory, Oloye Olajumoke Akinjide disclosed that the Administration would refocus - 16" />
+<?php include("../scripts/headers_new.php");?>
+<?php include('../tools/analytics.php');?>
+</head>
+<body>
+<?php include("../tools/header_new.php");?>
+<div id="main">
+<div id="content">
+<?php include("../tools/categories_new.php");?>
+<div id="content_left">
+<div id="sub_links">
+<div class="event_table_inner">
+<table style="width:100%;" >
+<tr>
+<td style="padding-left:8px; width:11%; text-align:center;">
+<div style="float:left; width:120px"><img src="http://localhost/nigerianseminars/images/news_image_BIG.png" width="100" height="100" alt="nigerian seminars logo" class="articleImg shadow" /></div>     
+</td>
+<td style="width:77%; text-align:center;"><h1 style="font-size:23px; text-align:center;">FCTA to refocus, fund Abuja Enterprise Agency – Akinjide</h1>
+<h2 style="font-weight:normal;font-size:12px;"><span class="span_detail">Posted:</span>
+3 years ago</h2>
+</td>
+</tr>
+</table>
+<div class="clearfix"></div>
+</div>
+<div id="contact-wrapper" class="rounded"  style="margin-top:8px;"> 
+<div class="video_box">
+<table style="width:100%;" id="listTable">
+<tr>
+<td style="color:#333; text-align:justify; line-height:20px"><div class="description" style="font-size:13px;"><p>
+	<span style="font-size:11px;"><span style="font-family: verdana,geneva,sans-serif;"><span style="color: rgb(10, 10, 10); line-height: 24px;">The Minister of State for the Federal Capital Territory, Oloye Olajumoke Akinjide disclosed that the Administration would refocus and improve the funding of Abuja Enterprise Agency to enable it realise its mandate.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">Akinjide, who made this known while receiving members of the AEA Board in her office, urged the agency to come up with more innovative projects and programmes such as the Shea Butter initiative that would generate employment and create wealth.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">The AEA, which was established in 2005, is the FCT vehicle for small and medium enterprise development, wealth creation, employment generation and poverty reduction.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">Akinjide said: &ldquo;The issue of employment generation, poverty reduction and wealth creation is of top priority to the FCT Administration.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">&ldquo;It is at the heart of the transformation agenda. We will refocus, re-energize and increase the funding of AEA so as to achieve its objectives.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">&ldquo;While the Administration is committed to funding the AEA, I will also advise that the agency devise ways of attracting multilateral funds. We are encouraged by the commitment of members of the board of the agency, and I want to assure that the FCT Administration will support the agency.&rdquo;</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">Earlier, the Director of Admin and Finance in the Social Development Secretariat, Alhaji Salisu Kallamu, who represented the chairman of the Board, explained that the agency was assisting new and existing entrepreneurs to overcome obstacles to growth through access to finance, proper business planning and development of entrepreneurship skills.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">&ldquo;The agency is constantly working towards provision of qualitative training and motivation for entrepreneurs, mentoring for start-ups and access to time bound financial services through the establishment of Kwali Micro Finance Bank with branches in all the area councils within the territory,&rdquo; Kallamu stated.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">He solicited the support of the FCT Administration to enable it execute its projects and programmes such as the establishment of Abuja Talent Academy, NYSC Entrepreneurship Programme and Abuja Creative Enterprise Group, among others.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">Meanwhile, Akinjide has appointed Aisha Abubakar as the acting Managing Director/Chief Executive Officer of Abuja Enterprise Agency.</span><br style="color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 24px;" />
+	<span style="color: rgb(10, 10, 10); line-height: 24px;">Abubakar replaces the former Managing Director of the agency, Altine Jibrin, who has retired from the civil service.</span></span></span></p>
+</div>
+</td>
+</tr>
+</table>  
+<div class="tags">
+<div> 
+<p style="float:left; margin-right:8px;"><strong>Share this news:</strong></p> 
+<div style="float:left;"> 
+<div class="fb-like" data-href="http://localhost/nigerianseminars/newspg/16-fcta-to-refocus-fund-abuja-enterprise-agency-akinjide" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> 
+<div class="fb-share-button" data-href="http://localhost/nigerianseminars/newspg/16-fcta-to-refocus-fund-abuja-enterprise-agency-akinjide" data-type="button_count"></div>
+<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+<!-- Place this tag after the last share tag. -->
+<script type="text/javascript">
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/platform.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script>
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<div class="event_social">
+<div class="tags">
+<h3 style="font-weight: normal;">
+<span>
+<strong style="float:left; margin-right:8px;">Tags: </strong><a href="http://localhost/nigerianseminars/newstagSearch?tag=Refocus" style="font-size:12px;font-weight:normal;" class="color4" >Refocus</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Fund" style="font-size:12px;font-weight:normal;" class="color6" > Fund</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Agency" style="font-size:12px;font-weight:normal;" class="color4" > Agency</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Administration" style="font-size:12px;font-weight:normal;" class="color1" > Administration</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Employment" style="font-size:12px;font-weight:normal;" class="color1" > Employment</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Wealth" style="font-size:12px;font-weight:normal;" class="color3" > Wealth</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Poverty" style="font-size:12px;font-weight:normal;" class="color2" > Poverty</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Training" style="font-size:12px;font-weight:normal;" class="color3" > Training</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Motivation" style="font-size:12px;font-weight:normal;" class="color4" > Motivation</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Entrepreneurs" style="font-size:12px;font-weight:normal;" class="color4" > Entrepreneurs</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Social" style="font-size:12px;font-weight:normal;" class="color4" > Social</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Development" style="font-size:12px;font-weight:normal;" class="color4" > Development</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Finance" style="font-size:12px;font-weight:normal;" class="color4" > Finance</a> <a href="http://localhost/nigerianseminars/newstagSearch?tag=Banks" style="font-size:12px;font-weight:normal;" class="color1" > Banks</a> 
+</span>
+</h3>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="fb-comments" data-href="<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>" data-width="720px" data-numposts="5" data-colorscheme="light"></div>
+<div id="sub_links2_middle">
+<!-- Begin BidVertiser code -->
+<?php echo $GetAdverts -> LandScapeAds("Page Banner 2",$advert);?>
+<div class="clearfix"></div>
+<?php $result = MysqlSelectQuery("SELECT * FROM news ORDER BY RAND() DESC LIMIT 3 "); if(NUM_ROWS($result) > 0){ ?>
+<div style="margin-top:20px">
+<h3>Related News</h3>
+<table style="width:100%;" id="listTable">
+<?php $i = 1; while($rows = SqlArrays($result)){ if($i % 2 == 0){$bg ="#F7F7F7";} else {$bg ="";} ?>
+<tr>
+<td style="vertical-align:top; width:5%;"> <?php if($rows['image']==""){?>
+<img src="<?php echo SITE_URL;?>images/news_image_BIG.png" width="70" height="70" alt="nigerianseminarsandtrainings" class="articleImg shadow" />
+<?php ;}
+else{?>
+<img src="<?php echo SITE_URL;?>nstlogin/articles_images/<?php echo $rows['image'];?>" width="70"  height="70" alt="Articles nigerian seminars and training" class="articleImg shadow"/>
+<?php ;}?>
+</td>
+<?php
+//this gets the characters 0 to the period and stores it in $newFile
+$newFile = trim(WordTruncate($rows['newsTitle'], 50));
+$newFile = str_replace(" ", "000", $newFile);
+//Remove special Characters
+$newFile = preg_replace("/[^A-Za-z0-9\-]/","", $newFile);
+//Replace spaces with dash/hyphen
+$newFile = str_replace("000", "-", $newFile);
+$newFile = str_replace("--", "-", $newFile);
+//Covert d name to lowercase
+$newFile = strtolower($rows['News_id']."-".$newFile);//.".php"
+?>
+<td style="width:72%;"><p><a href="<?php echo SITE_URL.'newspg/'.$newFile;?>" style="font-size:14px; font-weight:normal;" ><?php echo $rows['newsTitle'];?></a></p>
+<div style="font-size:12px; text-align:justify"><?php echo substr(strip_tags(stripslashes($rows['description'])),0,300);?> <a href="<?php echo SITE_URL.'newspg/'.$newFile;?>" style="font-size:10px; color:#999;" target="_blank">[Read more]</a></div>
+</td>
+<td style="vertical-align:top; width:23%;"><strong>Posted:</strong> <img src="<?php echo SITE_URL;?>images/icon_clock.png" width="10" height="10" alt="Articles nigerian seminars and training" /> <?php echo time_ago($rows['posted_date']);?></td>
+</tr>
+<?php $i++; } ?>
+</table>
+</div>
+<?php } ?>
+</div>
+<!-- end subpage -->
+</div>	
+</div>
+<?php include("../tools/side-menu_new.php");?>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<?php include ("../tools/footer_new.php");?>
+
+</body>
+</html>

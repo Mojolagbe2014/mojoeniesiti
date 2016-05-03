@@ -1,0 +1,13 @@
+{
+    "name": "vendor/nst",
+    "description": "traingingandseminars",
+    "require": {
+        "intervention/image": "^2.3"
+    },
+    "authors": [
+        {
+            "name": "nst",
+            "email": "info@nst.com"
+        }
+    ]
+}

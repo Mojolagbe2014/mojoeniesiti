@@ -1,0 +1,6 @@
+[30-May-2014 20:57:59 Africa/Lagos] PHP Warning:  include(scripts/headersJS.php): failed to open stream: No such file or directory in /home/nst1/public_html/tools/footer.php on line 102
+[30-May-2014 20:57:59 Africa/Lagos] PHP Warning:  include(): Failed opening 'scripts/headersJS.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/tools/footer.php on line 102
+[30-May-2014 20:58:30 Africa/Lagos] PHP Warning:  include(scripts/headersJS.php): failed to open stream: No such file or directory in /home/nst1/public_html/tools/footer.php on line 102
+[30-May-2014 20:58:30 Africa/Lagos] PHP Warning:  include(): Failed opening 'scripts/headersJS.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/tools/footer.php on line 102
+[30-May-2014 20:59:19 Africa/Lagos] PHP Warning:  include(scripts/headersJS.php): failed to open stream: No such file or directory in /home/nst1/public_html/tools/footer.php on line 102
+[30-May-2014 20:59:19 Africa/Lagos] PHP Warning:  include(): Failed opening 'scripts/headersJS.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/tools/footer.php on line 102

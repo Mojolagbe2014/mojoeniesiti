@@ -1,0 +1,112 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-size: 12px;
+  color: #333;
+  font-family: 'Raleway',sans-serif;
+  background-color: #f4f4f4;
+}
+
+img, video, banners {
+    max-width: 100%;
+}
+
+a {
+    color: #33454e;
+    text-decoration: none;
+}
+#top_element {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 0;
+  color: #000;
+  #TopNav {
+      width: 100%;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: #f3f3f3;
+      .topmenu_options {
+          float: right;
+          width: 70.7692%;
+          font-size: 12px;
+          color: #007b00;
+          .top_login_form {
+              margin-right: 1%;
+              margin-top: 5px;
+              .btn-control {
+                  float: right;
+                  #form1 {
+                      margin-top: 10px;
+                      a {
+                          padding: 3px;
+                          margin: 0;
+                          font-size: 10px;
+                          background-color: #435a65;
+                          color: #FFF;
+                      }//end a
+                  }//end form2
+              }//end btn-control
+          }//top_login_form
+      }//topmenu_options
+      .topmenu_options_left {
+          float: left;
+          margin-top: 10px;
+          margin-bottom: 6px;
+          width: 25.2308%;
+          font-size: 12px;
+          color: #007b00;
+          .welcomeNote {
+              float: left;
+              width: auto;
+              margin-right: .471698%;
+              padding-left: 5px;
+              font-size: 12px;
+              color: #000;
+          }//end welcomeNote
+      }//end topmenu_optioins_left
+	}//topNav
+}//top_element
+
+.top_content {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  clear: both;
+  display: block;
+	#slider {
+    width: 100%;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
+    float: left;
+    .logoClass {
+		    margin-top: 20px;
+		    float: left;
+		    height: 60px;
+		    width: 35.7692%;
+		    margin-bottom: 30px;
+		    margin-left: 2.30769%;
+		}//end logo class
+		.Adbanner {
+		    width: 56%;
+		    float: right;
+		    height: 90px;
+		    margin-left: 1.13208%;
+		    padding-top: 10px;
+		    padding-right: .769231%;
+		}//end adbanner
+	}//end slider id
+
+	.menu_container {
+    display: block;
+    width: 100%;
+    height: 40px;
+    float: left;
+    max-width: 1298px;
+	}//menu_container
+}//end top_content
+@import "partials/nav";

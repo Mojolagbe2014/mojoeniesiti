@@ -1,0 +1,300 @@
+#main_content {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+  background-color: #FFF;
+  max-width: 1300px;
+  padding: 0 0 15px;
+}//end main_content
+#home {
+	@import "partials/totopbotton";
+	@import "partials/sidemenu";
+	@import "partials/bottons";
+	#evtsearch {
+		height:30px;
+		width:120%;
+	}//end evtsearch
+	
+	.mobile_res {
+		font-size:11px;
+		margin-top:10px; 
+		margin-bottom:15px; 
+		font-weight:bold
+	}//end mobile_res
+
+	#search_now {
+		width:12%;
+		vertical-align:top;
+		button {
+			padding:2px;
+			font-size:10px;
+			background-color:#435a65;
+			color:#FFF;
+			margin:0;
+			height:32px;
+			border-radius:0;
+		}// end style for btn in search_now
+	}//end search_now
+ 
+	.advanced p:first-child{
+		text-align:center; 
+		margin-bottom:5px;
+	}//end style for d first p in advance
+
+	#use-basic {
+		font-size:11px;
+		text-decoration:none; 
+		margin-top:-5px;
+		position: relative; 
+		top: -5px; font-weight:bold;
+	}//end style for use-basic search
+
+	#output_events {
+		position:relative;
+		overflow:auto;
+		margin-top:-10%;
+		border-radius:4px/8px;
+		overflow-wrap:break-word;
+	}//end style for output_events
+
+	h2.highlights_mobile {
+		font-weight:normal;
+		font-size:15px;
+	}//end style for the h2 with a class of highlights_mobile
+
+	.respond .testImg img {
+		height: 50px;
+		width: 25%;
+		position: relative;
+		left: 35%;
+	}//end style for the img inside testImg inside respond
+
+	.organiser {
+		text-align:center;
+		font-size:14px;
+		color:#105773;
+		margin:5px 0 5px 0;
+	}//end style for class organiser
+
+	.trainingProviders {
+		width:100%;
+		img: {
+			float:none
+		}//end style for img
+		span {
+			li {
+				margin-left:5px;
+				padding-left:5px;
+				list-style-position:inside;
+			}//end style for li
+		}//end style for span
+	}//end style for class .trainingProviders
+
+	.desc {
+		color:#000;
+		font-size:12px;
+		text-align:left;
+	}//style for desc
+
+	.move {
+		margin-bottom:5px;
+		margin-top:5px;
+	}//end style for move
+
+	.TabbedPanelsContent {
+		color:#33454e;
+		text-align:center;
+		height:150px;
+	}//end style for tabbedPanelsContent
+
+	#EvtTags {
+		max-height:900px;
+		overflow:scroll;
+	}//end style for EvtTags
+
+
+	.useful-weblink {
+		#currency {
+			font-size:13px;
+		}//end style for currency
+	}//end style for useful-weblink
+
+	#profile-table {
+		width:auto;
+		margin-top:-0.8%;
+	}//end style for profile-table
+
+	#google_translate_element {
+		float:right;
+	}//end style for google_translate_element
+
+	#venuProviders {
+		float:left;
+	}//end style for venuProviders
+
+	.align-center {
+		text-align:center;
+	}//end style for align-center
+
+	.smart-forms {
+		padding-top:0px;
+	}//end style for smart-forms
+
+	#searchform {
+		width:100%;
+		margin-top:0;
+	}//end style for searchform
+	
+	#output img {
+		height: 14px;
+		width: 20px;
+		text-align: center;
+	}//end style for img
+
+	#stateSelect {
+		display:none;
+	}//end style for stateSelect
+
+	.title {
+		display:block;
+		padding:3px;
+	}//end style for title
+
+	.state-date {
+		display:none;
+	}//end style for state-date
+
+	.location {
+		text-align:center;
+		display:block;
+	}//end style location
+
+	div#currency {
+		float:left;
+	}//end style for div with an id of currency
+
+	.description {
+		span {
+			font-size:16px;
+			color:#105773;
+			font-weight:bold;
+		}//end style for span
+	}//end style for secription
+	
+	div.fb-like {
+		margin-bottom:5px;
+		margin-left:7px;
+	}//end style for a div with a class fo fb-like
+
+	#tp-bottom {
+		width:70%;
+		margin-left:auto;
+	}//end style for tp-bottom
+
+	.name {
+		font-size:6px;
+	}//end style for name
+
+	.quote {
+		span {
+			font-weight:normal;
+			color:#000;
+		}//end style for span
+	}//end style for quote
+
+	#alexa {
+		display:none;
+		height:1;
+		width:1;
+	}//end style for elexa
+	
+	#mask {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 9000;
+		background-color: #000;
+		display: none;
+
+	}//end style for mask
+
+	.window {
+		position:fixed;
+		left:0;
+		top:0;
+		width:500px;
+		z-index:9999;
+		padding:20px;
+		display:none;
+	}//end style for window
+	
+	.window_currency {
+		position:fixed;
+		left:0;
+		top:0;
+		width:200px;
+		z-index:9999;
+		padding:20px;
+		display:none;
+	}//end style for window_currency
+	
+	.boxContent {
+		border-radius:8px;
+		background-color:#666;
+		padding:8px;
+	}//end style for boxContent
+	
+	.form_content {
+		background-color:#FFF;
+		border-radius:8px;
+		display:block;
+		float:left;
+	}//style for form_content
+
+	.innerHeadingProp {
+		color:#FFC;
+		padding-left:100px;
+		
+		p {
+			font-size:16px;
+			float:left;
+			margin-left:10px;
+			}//end style for p
+	}//end style for innerHeadingProp
+
+	.subscribe_notification {
+		padding:10px;
+		height:200px;
+		width:500px;
+		background-color:#FFF;
+		float:left;
+		display:none;
+		background-image:url(https://www.nigerianseminarsandtrainings.com/images/school.png);
+		background-repeat:repeat;
+
+		span {
+			padding:5px;
+			font-size:24px;
+			text-align:center;
+			float:left;
+			text-shadow:1px 1px 1px rgba(150,150,150,1);
+			img {
+				vertical-align:middle;
+				padding-right:5px;
+				float:left;
+			}//end style img
+		}//end style for span
+	}//subscribe_notification
+	
+}//end home style
+
+#main_content {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+  background-color: #FFF;
+  max-width: 1300px;
+  padding: 0 0 15px;
+}//end main_content

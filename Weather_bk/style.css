@@ -1,0 +1,441 @@
+@font-face {
+font-family: "Segoe WPC";
+src: url("http://cdn-resources.windowsphone.com/Resources/Fonts/SegoeWPCRegular/Latin1_1252/87c56796-f4c3-4861-9f31-035d303c63ce-1.ttf") format("truetype");
+font-style: normal;
+font-weight: normal;
+}
+@font-face {
+font-family: "Segoe WPC Light";
+src: url("http://cdn-resources.windowsphone.com/Resources/Fonts/SegoeWPCLight/Latin1_1252/bd84c8dc-054a-427a-9fde-3ebb63965f38-1.ttf") format("truetype");
+font-style: normal;
+font-weight: normal;
+}
+@font-face {
+font-family: "Segoe WPC Black";
+src: url("http://cdn-resources.windowsphone.com/Resources/Fonts/SegoeWPCBlack/Latin1_1252/f513a30a-82ae-4466-acac-96337207a433-1.ttf") format("truetype");
+font-style: normal;
+font-weight: bold;
+}
+
+/*body {
+	color:#a8a8a8;
+	font-family: 'Segoe WPC', Segoe UI, Arial, Tahoma, sans-serif;
+	font-size:13px;
+	margin:0;
+	padding:0;
+}
+
+img { margin: 2px; }
+
+h1 {
+margin-top: 5px;
+font-weight:400;
+}
+
+a {
+color:#a8a8a8;/*333*/
+text-decoration: none;
+}
+
+a:hover {
+color:#eee;
+}
+
+option {
+font-weight: bold;
+}
+option:hover {
+cursor: pointer;
+}
+
+img { border: 0 }
+*/
+input, select, textarea {
+font-family: 'Segoe WPC', Segoe UI, Arial, Tahoma, sans-serif;
+border:1px solid #D9D9D9;
+border-top:1px solid #C0C0C0;
+font-size:14px;
+outline:none;
+padding:5px;
+}
+input:hover, select:hover, textarea:hover{
+border:1px solid #C0C0C0;
+border-top: 1px solid #777;
+}
+input:focus, select:focus, textarea:focus {
+border:1px solid #2a2a2a;
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+input#search {
+width: 176px;
+background: #f0f0f0;
+border:2px solid #000;
+font-size:14px;
+outline:none;
+padding:5px;
+color:#aaa;
+float:left;
+}
+input#search:hover {
+background: #fff;
+color: #202020;
+}
+input#search:focus {
+background: #fff;
+color: #202020;
+}
+hr { 
+border:none;
+color:white;
+height:1px;
+background:#ccc;
+background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 600, from(#ccc), to(#fff)); 
+}
+
+/* Selectie */
+::selection {
+background:#000;
+color:#fff;
+}
+::-moz-selection {
+background:#000;
+color:#fff;
+}
+::-webkit-selection {
+background:#000;
+color:#fff;
+}
+
+/*General*/
+
+#header {
+font-family: 'Open Sans', Segoe UI, sans-serif;
+margin: 0 auto;
+padding: 7px 10px 13px 10px;
+height: 69px;
+}
+
+#content {
+	/*width:690px;*/
+}
+
+.content {
+	border: 1px solid #000;
+	/*width: 680px;*/
+	height: 500px;
+	background: #fafafa;
+}
+.Freeze {
+background: url(images/bg_freeze.png) no-repeat;
+}
+.Cold {
+background: url(images/bg_cold.png) no-repeat;
+}
+.Average {
+background: url(images/bg_average.png) no-repeat;
+}
+.Warm {
+background: url(images/bg_warm.png) no-repeat;
+}
+.Hot {
+background: url(images/bg_hot.png) no-repeat;
+}
+.contentPanel {
+padding: 10px;
+overflow: auto;
+color: #000;
+}
+.contentSearch {
+width: 600px;
+padding: 7px;
+height: 100px;
+}
+.contentSearchLeft {
+/*width: 450px;*/
+float: left;
+}
+.contentSearchTitle {
+font-size: 17px;
+color: #fff;
+text-shadow:1px 1px 1px #000;
+width: 100px;
+padding:5px
+float:left;
+}
+
+.weatherCurrent {
+background-color: rgba(0,0,0,0.7);
+color: #d3d3d3;
+width: 120px;
+height: 280px;
+float: left;
+padding: 7px;
+margin-right:2px;
+margin-top: 40px;
+}
+.dayCurrent {
+color: #fff;
+font-size: 22px;
+}
+.cityCurrent {
+font-size: 14px;
+color: #fff;
+}
+.tempCurrent {
+font-size:70px;
+color: #fff;
+}
+.humidityCurrent {
+font-size: 18px;
+color: #fff;
+}
+.windCurrent {
+font-size: 17px;
+color: #fff;
+}
+
+.weatherForecast {
+background-color: rgba(0,0,0,0.7);
+color: #d3d3d3;
+width: 120px;
+height: 250px;
+float: left;
+margin-left: 10px;
+margin-top: 50px;
+padding: 8px;
+}
+
+.dayForecast {
+color: #fff;
+font-size: 22px;
+}
+.tempForecast {
+font-size: 16px;
+color: #fff;
+}
+.condForecast {
+font-size: 14px;
+color: #fff;
+}
+
+.footer {
+width: 1000px;
+margin: 15px auto;
+}
+.notice {
+font-size: 18px;
+}
+.headerMenu {
+font-family: Verdana, Tahoma, Arial;
+overflow:auto;
+margin: 0 auto;
+width: 1000px;
+text-align: right;
+padding: 5px 20px 10px 0;
+}
+.headerMenu a{
+float: left;
+font-size: 14px;
+text-decoration: none;
+text-transform: lowercase;
+margin-right: 20px;
+}
+.headerMenu a:hover{
+border-color: #a7a7a7;
+}
+.adminContent {
+padding: 5px;
+background: #f6f6f6;
+margin: 10px 0 50px 0;
+border: 1px solid #b6b6b6;
+border-radius:2px;
+font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+.inputContainerAdmin {
+width: 400px;
+float: left;
+}
+.addurlContent {
+padding: 5px;
+background: #f6f6f6;
+margin: 10px 0;
+border: 1px solid #b6b6b6;
+border-radius:2px;
+font-family: Verdana, Tahoma, Arial, sans-serif;
+}
+.adminContent h3 {
+border-bottom: 1px solid #b6b6b6;
+padding-bottom:3px;
+}
+.adminContent li {
+margin-left: 10px;
+}
+.small {
+font-size: 12px;
+color: #666;
+margin: 7px 0;
+}
+
+.halfContent {
+float: left;
+width: 490px;
+}
+.linePanel {
+border-bottom: 1px solid #ccc;
+width: 980px;
+float: left;
+}
+.halfContent h1 {
+font-size: 48px;
+margin: 0;
+padding: 0;
+color: #006ac2;
+font-family: Georgia, serif;
+font-style: italic;
+}
+.adsContainerAdmin {
+width: 380px;
+float: left;
+}
+
+.pageContent {
+padding: 5px;
+background: #f6f6f6;
+margin: 10px 0;
+border: 1px solid #b6b6b6;
+border-radius:2px;
+font-family: Verdana, Tahoma, Aral, sans-serif;
+}
+/*input[type="submit"]{
+font-family: Segoe UI, Tahoma, Verdana, sans-serif;
+color: #6b6b6b;
+font-size: 12px;
+background: #F3F3F3;
+background: -webkit-gradient(linear,left top,left bottom,from(#fdfdfd),to(#F1F1F1));
+background: -moz-linear-gradient(top,#fdfdfd,#F1F1F1);
+background: -ms-linear-gradient(top,#fdfdfd,#F1F1F1);
+background: -o-linear-gradient(top,#fdfdfd,#F1F1F1);
+border: 1px solid #b1b1b1;
+text-align: center;
+width: auto;
+padding: 5px 5px;
+text-decoration: none;
+margin-top: 10px;
+}
+input[type="submit"]:hover{
+border-color: #a7a7a7;
+color: #333;
+box-shadow: 0px 1px 1px #ccc;
+}
+input[type="submit"]:active {
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#E0E0E0));
+border-color: #BBB;
+box-shadow: rgb(204, 204, 204) 0px 1px 5px inset;
+-webkit-box-shadow: rgb(204, 204, 204) 0px 1px 5px inset;
+z-index: 2;
+color: #000;
+}*/
+
+.randTabel {
+background: #666;
+width: 170px;
+float: left;
+padding: 5px 5px;
+border: 1px solid #000;
+margin: 0 14px 5px 0;
+color: #f8f8f8;
+}
+.randTabel:hover {
+background: #555;
+border: 1px solid #666;
+}
+.format {
+	font-size: 18px;
+	text-transform: uppercase;
+	height: 30px;
+	width: 30px;
+	float: right;
+	border: 2px solid #fff;
+	border-radius: 30px;
+	text-align: center;
+	margin-right: 10px;
+}
+/*.format:last-child {
+margin-top: 5px;
+}*/
+.format:hover {
+background: #fff;
+}
+.format:hover a{
+color: #000;
+}
+.format a {
+padding-top: 3px;
+color: #fff;
+line-height: 28px;
+}
+.favoritesContent {
+width: 980px;
+overflow: auto;
+margin-top: -10px;
+margin-bottom: -10px;
+}
+
+.error {
+font-family: Verdana, Tahoma, Arial, sans-serif;
+padding: 5px;
+border: 1px solid #cc0000;
+background: #ffc0cf;
+color: #b40a34;
+margin-bottom: 10px;
+}
+.success {
+font-family: Verdana, Tahoma, Arial, sans-serif;
+padding: 5px;
+border: 1px solid #1dcc00;
+background: #c0ffc1;
+color: #1dcc00;
+margin-bottom: 10px;
+}
+.neutral {
+font-family: Verdana, Tahoma, Arial, sans-serif;
+padding: 5px;
+border: 1px solid #CCC;
+background: #F1F1F1;
+color: #666;
+margin-bottom: 10px;
+}
+.neutral a {
+color: #666;
+font-weight: bold;
+}
+.neutral a:hover {
+color: #000;
+}
+.success a {
+color: #18a600;
+font-weight: bold;
+}
+.success a:hover {
+color: #000;
+}
+/* Tipsy */
+
+.tipsy { padding: 5px; font-size: 11px; position: absolute; z-index: 100000; font-family: Verdana, Tahoma, Arial, sans-serif;}
+
+.tipsy-arrow { position: absolute; width: 9px; height: 5px; }
+.tipsy-n .tipsy-arrow { top: 0; left: 50%; margin-left: -4px; }
+.tipsy-w .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }
+
+.tipsy-inner { padding: 5px 8px 4px 8px; background-color: #fff; color: #666; width: 200px;  border: 2px solid #000; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);}
+.tipsy strong { color: #000; }
+.tipsy despartitor { margin: 5px 0 0 -8px; border-top: 1px solid #ddd; width: 216px; height: 2px; display: block;}
+.tipsy votes { color: #000; }
+.tipsy genres { color: #000; }
+
+#WSBubble{display:none;overflow:hidden;position:absolute;box-shadow: 0px 0px 6px #b4b4b4;}
+#WSBubble img{margin:9px;}
+#WSBubble.small{width:220px;height:170px;background:url(images/wsbg.png);}
+
+/* Elimina un stil
+*/

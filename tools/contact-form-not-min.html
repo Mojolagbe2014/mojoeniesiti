@@ -1,0 +1,61 @@
+ <!-- contact form -->
+		<div class="feedback">
+	<div class="form smart-forms">
+    <a id="feedback_button" style="display:none;"><i class="fa fa-times"></i>&nbsp; Close</a>
+	<p style="margin-bottom:5px;"><strong>Please send in your enquiries</strong></p>
+    
+		
+        
+		<form method="post" action="contact-us" id="contact-form" style="display:block; margin-left:auto; margin-right:auto;">  
+                                       <div class="section">
+                        <label class="field prepend-icon">
+                            <input type="text" name="contactname" id="contactname" class="gui-input" placeholder="Name" required>
+                            <span class="field-icon"><i class="fa fa-user"></i> </span>  
+                        </label>
+                    </div><!-- end section -->     
+         
+                                   <div class="section">
+                        <label class="field prepend-icon">
+                            <input type="text" name="company" id="company" class="gui-input" placeholder="Company">
+                            <span class="field-icon"><i class="fa fa-building-o"></i> </span>  
+                        </label>
+                    </div><!-- end section -->
+                                
+                                     <div class="section">
+                        <label class="field prepend-icon">
+                            <input type="email" name="email" id="email" class="gui-input" placeholder="Email" required>
+                            <span class="field-icon"><i class="fa fa-envelope"></i> </span> 
+                        </label>
+                    </div><!-- end section -->
+                                     
+                                     <div class="section">
+                        <label class="field prepend-icon">
+                            <input type="text" name="phone" id="phone" class="gui-input" placeholder="Telephone">
+                            <span class="field-icon"><i class="fa fa-phone"></i> </span> 
+                        </label>
+                    </div><!-- end section -->
+                           <div class="section">
+                             <label class="field prepend-icon">
+						            <textarea name="comment" id="comment" class="gui-textarea"  placeholder="Message" required></textarea>
+                                  
+</label>
+                                   </div>
+                                     
+						          <div class="smart-widget sm-left sml-120">
+                            <label class="field">
+                                <input type="text" name="securitycode" id="securitycode_contact" class="gui-input sfcode" placeholder="Enter code:">
+                               
+                            </label>
+                           <span class="button captcode">
+                            	<img src="tools/captcha.php" id="captcha_contact" alt="Captcha" width="117" height="38" >
+                                <span class="refresh-captcha"><i class="fa fa-refresh"></i></span>
+                            </span>
+                        </div>
+                        
+							         <div class="contact-left" style="margin-top: 10px;">
+							         	  <button type="submit" class="button btn-primary" name="submit">Submit</button><div class="alert notification spacer-b30" style="display:none; float:right;" id="msgbox"></div>
+							         </div> 
+							     </form>
+	</div>
+</div>
+       <!-- end contact form -->

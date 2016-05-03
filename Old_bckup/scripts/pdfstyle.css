@@ -1,0 +1,131 @@
+img,div,p,a{
+	text-decoration:none; margin:0px; padding:0px;
+	}
+.clear{
+	clear:both;
+}
+.pdfTable{
+	width:750px;
+}
+.main_content {
+	width: 750px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.header {
+	height: 60px;
+	width: 750px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+.innerBar {
+	background-color: #090;
+	height: 30px;
+	width: 750px;
+	margin-bottom:5px;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
+	padding-top: 5px;
+}
+.social {
+	width: 750px;
+	margin-bottom: 8px;
+	color: #F00;
+	font-size: 12px;
+	line-height: inherit;
+	float: right;
+}
+.social img{
+	width: 30px;
+	height: 25px;
+	width: 25px;
+	vertical-align: middle;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+.info {
+	font-size: 12px;
+	color: #030;
+	background-color: #FF9;
+	width: 750px;
+	float: left;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	text-align: center;
+	margin-bottom: 8px;
+}
+.info {
+}
+/*.main_content tr {
+	width:600px;
+}*/
+.pdfTable tr td {
+	font-size: 12px;
+	color: #333;
+	background-color:#F0F0F0;
+	width:228px;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	
+	}
+	.pdfTable a{
+		color:#090
+	}
+
+/*.main_content tr td:last-child {
+	width:200px;
+}
+
+.main_content tr td:first-child {
+	width:200px;
+}
+*/
+
+.pdfTable tr th {
+	padding: 5px;
+	background-color:#E0E0E0;
+	color: #F00;
+	font-size: 14px;
+}
+.tableDiv {
+	width: 700px;
+}
+.leftdiv {
+	float: left;
+	width: 200px;
+	height: 40px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	overflow: hidden;
+}
+.rightdiv {
+	float: right;
+	width: 200px;
+	height: 40px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	overflow: hidden;
+}
+.mid_div {
+	float: left;
+	width: 300px;
+	height: 40px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	overflow: hidden;
+}
+.social span {
+	float: left;
+	margin-left: 570px;
+	margin-top: 7px;
+}

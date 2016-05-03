@@ -1,0 +1,26 @@
+[22-Aug-2014 02:12:11 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[22-Aug-2014 02:12:11 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[26-Aug-2014 13:33:28 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[26-Aug-2014 13:33:28 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[11-Sep-2014 02:30:37 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[11-Sep-2014 02:30:37 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[12-Sep-2014 06:01:52 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[12-Sep-2014 06:01:52 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[23-Sep-2014 07:54:40 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[23-Sep-2014 07:54:40 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[14-Oct-2014 10:35:34 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[14-Oct-2014 10:35:34 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[29-Oct-2014 10:00:04 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[29-Oct-2014 10:00:04 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[05-Nov-2014 04:28:06 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[05-Nov-2014 04:28:06 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[17-Nov-2014 12:08:11 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[17-Nov-2014 12:08:11 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[17-Nov-2014 22:27:48 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[17-Nov-2014 22:27:48 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[19-Nov-2014 04:13:39 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[19-Nov-2014 04:13:39 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[24-Nov-2014 01:20:41 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[24-Nov-2014 01:20:42 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3
+[28-Nov-2014 01:02:08 America/Denver] PHP Warning:  require_once(scripts/config.php): failed to open stream: No such file or directory in /home/nst1/public_html/css/index.php on line 3
+[28-Nov-2014 01:02:08 America/Denver] PHP Fatal error:  require_once(): Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/css/index.php on line 3

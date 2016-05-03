@@ -1,0 +1,120 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+/* line 3, ../../resources/assets/sass/modules/_home.scss */
+#hamburger {
+  padding-bottom: 20px;
+}
+
+/* line 6, ../../resources/assets/sass/modules/_home.scss */
+.sml-btn {
+  background-color: #435a65;
+  color: #FFF;
+  cursor: pointer;
+}
+
+/* line 13, ../../resources/assets/sass/modules/_home.scss */
+#form1 a {
+  padding: 3px;
+  margin: 0;
+  font-size: 10px;
+  background-color: #435a65;
+  color: #FFF;
+}
+
+/* line 23, ../../resources/assets/sass/modules/_home.scss */
+#search-google button {
+  height: 35px;
+  margin: 0;
+  color: #fff;
+  background-color: #435a65;
+}
+
+/* line 34, ../../resources/assets/sass/modules/_home.scss */
+.hidele a {
+  background: none;
+}
+
+/* line 43, ../../resources/assets/sass/modules/_home.scss */
+.side-ul li {
+  font-size: 12px;
+  font-weight: normal;
+  margin-left: 10%;
+}
+/* line 50, ../../resources/assets/sass/modules/_home.scss */
+.side-ul i {
+  font-size: 6px;
+}
+
+/* line 56, ../../resources/assets/sass/modules/_home.scss */
+nav {
+  position: relative;
+}
+
+/* line 60, ../../resources/assets/sass/modules/_home.scss */
+#main {
+  margin-top: 20px;
+}
+
+/* line 67, ../../resources/assets/sass/modules/_home.scss */
+#wrap {
+  position: relative;
+  padding: 0;
+  top: -34px;
+  left: 4%;
+}
+/* line 73, ../../resources/assets/sass/modules/_home.scss */
+#wrap input[type="text"] {
+  height: 48px;
+  font-size: 23px;
+  display: inline-block;
+  font-family: "Lato";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #555;
+  padding: 3px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 13px;
+  background: none;
+  transition: width 0.4s cubic-bezier(0, 0.795, 0, 1);
+  cursor: pointer;
+}
+/* line 92, ../../resources/assets/sass/modules/_home.scss */
+#wrap input[type="text"]:focus:hover {
+  border-bottom: 1px solid pink;
+}
+/* line 96, ../../resources/assets/sass/modules/_home.scss */
+#wrap input[type="text"]:focus {
+  background-color: pink;
+  width: 98%;
+  z-index: 3;
+  border-bottom: 1px solid pink;
+  cursor: text;
+}
+/* line 104, ../../resources/assets/sass/modules/_home.scss */
+#wrap #search_submit {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  margin-top: 10px;
+  color: red;
+  float: right;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=);
+  background-size: 35px 30px;
+  background-repeat: no-repeat;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+/* line 125, ../../resources/assets/sass/modules/_home.scss */
+#wrap #search_submit:hover {
+  opacity: 0.8;
+}

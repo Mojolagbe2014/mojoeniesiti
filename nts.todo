@@ -1,0 +1,37 @@
+@created(15-09-04 13:55)
+  *Redirect from change_pass to profile. "iss7"[completed]
+  *Upadate account info. "iss10"[completed]
+  *sub login logic . "iss11" [completed]
+  * mobile optimization "iss15" [completed]
+  *reduce space btw logo and adbanners on mobile [resolved]
+  *page scroll onto header and not uder "iss14" [completed] 
+  *top menu beautification [resolved]
+  *training provider dropdown for mobile. [resolved]
+  *Navigation for inner pages not working [resolved]
+  *Refactoring the codebase "iss1". [ongoing]
+  *contact business form design for mobile "iss16" [resolved]
+  *Remove email business or turn it to  "iss16"  [resolved]
+  *Training Providers Dropdown "iss16" [resolved]
+  *Remove subscription form on index "iss16" [resolved]
+  *Remove search event by categories "iss16" [resolved]
+  *Remove scroller "iss16" [resolved]
+  *no navigation drop down on inner pages "iss17" [resolved]
+  *get rid of most inline css on home "iss18" [resolved]
+  *Login and subscribe on mobile "iss18" [resolved]
+  *Create “apply for job” page. "iss19" [resolved]
+  *add other links dropdown on mobile "iss19" [resolved]
+  *link job vacancies with apply "iss19" [resolved]
+  *event not showing on actual date "iss19" [resolved]
+  *Fix google page speed issues "iss19" [resolved]
+  *Create a link from our blog to show blogposts "iss23" [resolved]
+  *Caching "iss20" [resolved]
+  *both menu should have same font "iss22" [resolved]
+  *Make side menu background and color same as main menu "iss23" [resolved]
+  *On pages where there are no listing display "info where there is no listing. "iss21" [resolved]
+  *search "iss22" [resolved]
+  *Beautify the events by categories page – take a cue from here: http://trainingfinderonline.com/ "iss23" [resolved]
+
+ 
+  
+  
+

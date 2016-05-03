@@ -1,0 +1,2 @@
+[17-Sep-2014 20:12:56 Africa/Lagos] PHP Fatal error:  Out of memory (allocated 1572864) (tried to allocate 142405 bytes) in Unknown on line 0
+[24-Sep-2014 17:04:32 Africa/Lagos] PHP Fatal error:  Call to undefined function GetCategoryByID() in /home/nst1/public_html/tools/search_box.php on line 103

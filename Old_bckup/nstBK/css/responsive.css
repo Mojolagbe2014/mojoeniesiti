@@ -1,0 +1,192 @@
+@media only screen and (max-width: 1269px) {
+	.Adbanner img {
+	width: 100%;
+	}
+	.logoClass{
+		display:block; width:300px;
+	}
+	/*.top_login_form .btn-control {
+	float:none;
+	margin-top: 5px;
+	}*/
+	.inputBox {
+		margin-bottom:5px;
+	}
+	
+	/*.logoClass {
+	margin-top: -5px;
+	float:none;
+	background-image: url('');
+	height: 60px;
+	}*/
+	.logoClass img {
+		width:95%;
+}
+	.topmenu_options {
+		width:100%;
+	}
+	.topmenu_options_left {
+		display:none;
+	}
+	
+	.search{
+		display:none;
+	}
+	.orion-menu .hidele{
+	display:none;
+	}
+		#paging1{
+			display:none;
+		}
+		#paging2{
+			display:block;
+		}
+}
+@media only screen and (max-width: 900px) {
+	
+	.topmenu_options .resShow{ display:block;}
+	.topmenu_options ul{
+		width:100%;
+		margin-right:60px;
+	}
+	
+	/*.inputBox a {
+	display: none;
+	}
+	.inputBox input[type='text'], input[type='password'] {
+	width: 100%;
+	}*/
+	/*.topmenu_options {
+		width:100%;
+	}
+	.topmenu_options_left {
+		display:none;
+	}*/
+.Adbanner{ display:block; width:100%; margin-bottom:10px }
+	.logoClass{
+		display:block; width:400px; padding-left:150px;
+	}
+	.top_login_form {
+		display:none;
+	}
+}
+
+
+@media only screen and (max-width: 799px) {
+	
+	.searchSite #searchform {display:none;}
+	.topmenu_options .resShow{ display:block;}
+	
+	#content_left {
+	float:none;
+	width: 97%;
+}
+.responsiveCategoryMain{
+	display:none;
+}
+.responsiveCategoryMain .sneak_peak2_category{
+
+}
+.responsiveCategory{
+	display:block;
+	
+	}
+	#sidebar {
+	float: right;
+	width: 48%;
+	padding-left: 0.384615%;
+	background-color: #FFF;
+	padding-top: 10px;
+	}
+	.category_content {
+	float: left;
+	width: 48%;
+	}
+	.eventListing {
+		width:100%;
+	}
+	
+	#footer .socialize{
+		float:none;
+		width:auto;
+		
+	}
+	#footer .socialize ul {
+	list-style-image: none;
+	list-style-type: none;
+	float:left;
+	width:100%;
+}
+	#footer .socialize ul li {
+		float:left;
+		margin-right:2%;
+		margin-left:2%;
+}
+	#footer .copyright .goDaddy {
+	display:none;
+	}
+	.copyright {
+		margin-top:20px;
+	}
+	.top_login_form {
+		display:none;
+	}
+	
+	
+}
+@media only screen and (max-width: 700px) {
+	
+	.Adbanner{
+	display:block;
+	width:100%;
+	
+}
+	.logoClass{
+		display:block; width:400px; padding-left:0px;
+	}
+	.inputBox a {
+	display: none;
+	}
+	.inputBox input[type='text'], input[type='password'] {
+	width: 100%;
+	}
+	.topmenu_options {
+		width:100%;
+	}
+	.topmenu_options_left {
+		display:none;
+	}
+	.top_login_form {
+		display:none;
+	}
+	.topmenu_options ul{
+		width:100%;
+		margin-right:20px;
+	}
+	
+}
+@media only screen and (max-width: 600px){
+	.topmenu_options .resShow{ display:none;}
+	.responsiveCategory{
+	display:block;
+	float:none;
+	width:100%;
+	}
+	#sidebar {
+	float:none;
+	width:100%;
+	}
+}
+
+@media only screen and (max-width: 360px){
+	
+	.Adbanner{ display:none;}
+	.logoClass{
+		float:none;
+		width:100%;
+		 padding-left:0px;
+	}
+	.topmenu_options{ display:none;}
+	
+	
+}

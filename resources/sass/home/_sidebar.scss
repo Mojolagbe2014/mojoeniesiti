@@ -1,0 +1,24 @@
+#home {
+	#side-add1 {
+		text-align:center; 
+		margin-top:12px;
+	}//end side_add1
+	#sidebar {
+			padding-top:0;
+			.respond {
+				margin-top:6px;
+			}//end style for respond
+
+			.button_class {
+				h3, h4, h5, h6 {
+					font-size:13px;
+				}//end style for h3,h4,h5,h6 inside button_class
+			}//end style for button_class
+	}//end style sidebar
+
+	#hotel {
+		text-align:center;
+		margin-top:10px;
+		margin-bottom:10px;
+	}// end hotel style
+}

@@ -1,0 +1,37 @@
+
+* {
+	margin: 0;
+	padding: 0;
+
+}
+img,video,banners{
+	
+	max-width:100%;}
+
+fieldset, img {
+
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+body {
+	font-size: 12px;
+	color: #333;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #F4F4F4;
+}
+a {
+	color: #060;
+}
+h1 {
+	font-weight: normal;
+}
+h1 a {
+	text-decoration: none;
+}
+h2 {
+	font-weight: normal;
+	color: #000;
+}
+

@@ -1,0 +1,40 @@
+<?php 
+namespace nigerianseminarsandtrainings\app\classes;
+class Curlable {
+	
+	protected $url;
+	protected $header_info;
+	
+	public function __construct (array $options = array()){
+		foreach($options as $key => $value) {
+			if(property_exists($this, $key)){
+				$this->$key = $value;
+			}
+		}
+	}
+	
+	protected function setCurl() {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->url);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "	GET");
+		if($this->header_info){
+			curl_setopt($ch, CURLOPT_HEADER, $this->header_info);
+		}
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		return $ch;
+	}
+	
+	public function getResponse() {
+		$ch = $this->setCurl();
+		$response = curl_exec($ch);
+		curl_close($ch);
+		if($response === false) {
+			 $info = curl_getinfo($curl);
+    		curl_close($ch);
+			$info .= 'error occured';
+			return $info;
+		}else {
+			return $response;
+		}
+	}
+}

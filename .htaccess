@@ -1,0 +1,1529 @@
+#ErrorDocument 404 /nigerianseminars/404error.php
+ServerSignature Off
+
+<IfModule mod_deflate.c>
+
+# Force compression for mangled headers.
+# http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+# (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+#  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+#  as `AddOutputFilterByType` is still in the core directives).
+
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+application/javascript \
+application/json \
+application/rss+xml \
+application/vnd.ms-fontobject \
+application/x-font-ttf \
+application/x-web-app-manifest+json \
+application/xhtml+xml \
+application/xml \
+font/opentype \
+image/svg+xml \
+image/x-icon \
+text/css \
+text/html \
+text/plain \
+text/x-component \
+text/xml
+</IfModule>
+
+</IfModule>
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 month"
+ExpiresByType image/jpeg "access 1 month"
+ExpiresByType image/gif "access 1 month"
+ExpiresByType image/png "access 1 month"
+ExpiresByType text/css "access 1 week"
+ExpiresByType text/html "access 1 week"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+
+# Force download of files
+<FilesMatch "\.(doc|docx|xls|csv|txt|pdf)$">
+ ForceType application/octet-stream
+ Header set Content-Disposition attachment
+</FilesMatch>
+
+RewriteEngine on
+
+RewriteCond %{HTTPS} off
+# First rewrite to HTTPS:
+# Don't put www. here. If it is already there it will be included, if not
+# the subsequent rule will catch it.
+
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Now, rewrite any request to the wrong domain to use www.
+# RewriteCond %{HTTP_HOST} !^www\.
+# RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
+
+RewriteRule ^cmd-accr-training-providers/([^/]+)/?$ cmd-accr-training-providers.php?filter=$1 [NC,L]
+
+
+RewriteRule ^events/([0-9]+)/([^/]+)/?$ event-detail.php?detail=$1 [NC,L]
+
+#RewriteRule ^all-event/([0-9]+)/?$ all-event.php?year=$1 [NC,L]
+
+RewriteRule ^events/all/([^/]+)/([0-9]+)/?$ all_courses.php?page=$2 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/?$ all_courses.php?category=$1&detail=true [NC,L]
+
+RewriteRule ^vacancy/full/([0-9]+)/([^/]+)/?$ vacancy_detail.php?detail=$1 [NC,L]
+
+RewriteRule ^training-providers/countries/([0-9]+)/([^/]+)/?$ training-providers-category.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^training-providers/countries/?$ training-providers-category.php?countries[NC,L]
+
+RewriteRule ^training-providers/state/([0-9]+)/([^/]+)/?$ training-providers-category.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^trainingCategory/([^/]+)/?$ training-providers-category.php [NC,L]
+
+RewriteRule ^([^/]+)/([^/]+)/([0-9]+)/?$ $1.php?$2=$3 [NC,L]
+
+RewriteRule ^login/([^/]+)/?$ login.php?login=$1 [NC,L]
+
+RewriteRule ^rss?$ rss.php [NC,L]
+
+RewriteRule ^rss/?$ rss.php [NC,L]
+
+RewriteRule ^rss.xml/?$ rss.php [NC,L]
+
+RewriteRule ^news/([0-9]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^news/([0-9]+)/([^/]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^newsletter/([0-9]+)/([^/]+)/?$ newsletter.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^e-books/([0-9]+)/([^/]+)/?$ books.php?newsletter_id=$1 [NC,L]
+
+RewriteRule ^download/([0-9]+)/([^/]+)/?$ tools/download.php?id=$1 [NC,L]
+
+RewriteRule ^download_article/([0-9]+)/([^/]+)/?$ tools/downloadArt.php?fullarticle=$1 [NC,L]
+
+RewriteRule ^download-guide/([^/]+)/?$ tools/downloadGuide.php?guide=$1 [NC]
+
+RewriteRule ^downloadicon/([^/]+)/?$ tools/downloadIcon.php?file=$1 [NC]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/?$ all_courses.php?category=$1 [NC,L]
+
+RewriteRule ^events/categories/?$ all_courses.php?category_list [NC,L]
+
+RewriteRule ^events/states/?$ all_courses.php?state_list [NC,L]
+
+RewriteRule ^training_providersTraining?$ training_providers_category.php [NC,L]
+
+RewriteRule ^articles-pdf/before-it-happens-2u.pdf?$ articles-pdf/1.01.ArtOfTheStart.pdf [NC,L]
+
+RewriteRule ^articles/(.+\.pdf)$ articles-pdf/$1 [L]
+
+RewriteRule ^article/full/([0-9]+)/([^/]+)/?$ fullArticle.php?fullarticle=$1&page=$1 [NC,L]
+RewriteRule ^quote/full/([0-9]+)/([^/]+)/?$ quoteFull.php?quoteID=$1&page=$1 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?category=$1&page=$4 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/?$ all_courses.php?countryid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/countries/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?countryid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^events/countries/?$ all_courses.php?countries [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/?$ all_courses.php?stateid=$1&location=$2 [NC,L]
+
+RewriteRule ^events/state/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_courses.php?stateid=$1&location=$2&page=$4 [NC,L]
+
+RewriteRule ^eventsLocation/([^/]+)/?$ location.php [NC,L]
+
+RewriteRule ^trianingProvider/([^/]+)/?$ training_location.php [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^tprovider/([0-9]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^emanagers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^suppliers/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^venues/([0-9]+)/([^/]+)/?$ business_info.php?info=$1 [NC,L]
+
+RewriteRule ^courses/business/([^/]+)/?$ business_courses.php?courses=$1 [NC,L]
+
+RewriteRule ^courses/business/([^/]+)/page/([0-9]+)/?$ business_courses.php?courses=$1&page=$2 [NC,L]
+
+RewriteRule ^author/([^/]+)/?$ authors-articles.php?author=$1 [NC]
+
+RewriteRule  ^articles-pdf/bootstrappers articles-pdf/BootstrappersBible.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/nigeria articles-pdf/Nigeria_Confronts_Post-Crisis_Global_Economic_Realities.pdf [NC,L]
+
+RewriteRule  ^articles-pdf/28.05.accountabilitymanagers.pdf articles-pdf/28.05.AccountabilityManagers.pdf [NC,L]
+
+RewriteRule  ^articles/002.roadmaptopower articles-pdf/002.RoadmapToPowerSectorReformInNigeria.pdf [NC,L]
+
+
+
+#NEW REWRITE RULE
+
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+#RewriteCond %{HTTP_REFERER} !^http://m.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://m.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.m.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.m.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.nigerianseminarsandtrainings.com/.*$      [NC,L]
+#RewriteCond %{HTTP_REFERER} !^http://www.nigerianseminarsandtrainings.com$      [NC,L]
+#RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+
+# Permanent URL redirect
+
+# Old redirects
+Redirect 301 /category/administrative-secretarial https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+
+Redirect 301 /category/administrative-secretarial.php https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+
+Redirect 301 /category/admin-secretarial https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+Redirect 301 /category/admin-secretarial.php https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+
+Redirect 301 /category/agriculture-and-rural-dev https://www.nigerianseminarsandtrainings.com/agriculture-and-rural-development
+
+Redirect 301 /category/agriculture-and-rural-dev.php https://www.nigerianseminarsandtrainings.com/agriculture-and-rural-development
+
+Redirect 301 /category/entrepreneurship-biz-dev https://www.nigerianseminarsandtrainings.com/entrepreneurship-and-business-development.php
+
+Redirect 301 /category/aviation-maritime https://www.nigerianseminarsandtrainings.com/aviation-and-maritime
+
+Redirect 301 /category/aviation-maritime.php https://www.nigerianseminarsandtrainings.com/aviation-and-maritime
+
+Redirect 301 /category/banking-insurance https://www.nigerianseminarsandtrainings.com/banking-and-insurance
+
+Redirect 301 /category/banking-insurance.php https://www.nigerianseminarsandtrainings.com/banking-and-insurance
+
+Redirect 301 /category/category/customer-service-and-support https://www.nigerianseminarsandtrainings.com/category/customer-service-and-support
+
+Redirect 301 /category/engineering-technical-skills https://www.nigerianseminarsandtrainings.com/engineering-and-technical-skills
+
+Redirect 301 /category/engineering-technical-skills.php https://www.nigerianseminarsandtrainings.com/engineering-and-technical-skills
+
+Redirect 301 /category/entrepreneurship-and-biz-dev https://www.nigerianseminarsandtrainings.com/entrepreneurship-biz-dev
+
+Redirect 301 /category/entrepreneurship-biz-dev.php https://www.nigerianseminarsandtrainings.com/entrepreneurship-biz-dev
+
+Redirect 301 /category/finance-accounting https://www.nigerianseminarsandtrainings.com/finance-and-accounting
+
+Redirect 301 /category/finance-accounting.php https://www.nigerianseminarsandtrainings.com/finance-and-accounting
+
+Redirect 301 /category/info-communications-tech https://www.nigerianseminarsandtrainings.com/information-and-communications-technology
+
+Redirect 301 /category/info-communications-tech.php https://www.nigerianseminarsandtrainings.com/information-and-communications-technology
+
+Redirect 301 /category/info-and-communications-tech https://www.nigerianseminarsandtrainings.com/information-and-communications-technology
+
+Redirect 301 /category/leadership-self-development https://www.nigerianseminarsandtrainings.com/leadership-and-self-development
+
+Redirect 301 /category/leadership-self-development.php https://www.nigerianseminarsandtrainings.com/leadership-and-self-development
+
+Redirect 301 /category/legal-legislative https://www.nigerianseminarsandtrainings.com/legal-and-legislative
+
+Redirect 301 /category/legal-legislative.php https://www.nigerianseminarsandtrainings.com/legal-and-legislative
+
+Redirect 301 /category/logistics-supply-chain-mgt https://www.nigerianseminarsandtrainings.com/logistics-and-supply-chain-management
+
+Redirect 301 /category/logistics-and-supply-chain-mgt https://www.nigerianseminarsandtrainings.com/logistics-and-supply-chain-management
+
+Redirect 301 /category/logistics-supply-chain-mgt.php https://www.nigerianseminarsandtrainings.com/logistics-and-supply-chain-management
+
+Redirect 301 /category/research-meth-analytics https://www.nigerianseminarsandtrainings.com/research-methodology-and-analytics
+
+Redirect 301 /category/research-meth-analytics.php https://www.nigerianseminarsandtrainings.com/research-methodology-and-analytics
+
+Redirect 301 /category/research-meth-and-analytics https://www.nigerianseminarsandtrainings.com/research-methodology-and-analytics
+
+Redirect 301 /category/security-crime-prevention https://www.nigerianseminarsandtrainings.com/security-and-crime-prevention
+
+Redirect 301 /category/security-crime-prevention.php https://www.nigerianseminarsandtrainings.com/security-and-crime-prevention
+
+Redirect 301 /category/marketing-sales-mgt https://www.nigerianseminarsandtrainings.com/marketing-and-sales-management
+
+Redirect 301 /category/marketing-and-sales-mgt https://www.nigerianseminarsandtrainings.com/marketing-and-sales-management
+
+Redirect 301 /category/marketing-sales-mgt.php https://www.nigerianseminarsandtrainings.com/marketing-and-sales-management
+
+Redirect 301 /category/pre-retirement-new-beginnings https://www.nigerianseminarsandtrainings.com/pre-retirement-and-new-beginnings
+
+Redirect 301 /category/pre-retirement-new-beginnings.php https://www.nigerianseminarsandtrainings.com/pre-retirement-and-new-beginnings
+
+Redirect 301 /category/time-self-management https://www.nigerianseminarsandtrainings.com/time-and-self-management
+
+Redirect 301 /category/time-self-management.php https://www.nigerianseminarsandtrainings.com/time-and-self-management
+
+Redirect 301 /category/health-hse https://www.nigerianseminarsandtrainings.com/health-and-hse
+
+Redirect 301 /category/health-hse.php https://www.nigerianseminarsandtrainings.com/health-and-hse
+
+Redirect 301 /category/customer-service-support https://www.nigerianseminarsandtrainings.com/customer-service-and-support
+
+Redirect 301 /category/customer-service-support.php https://www.nigerianseminarsandtrainings.com/customer-service-and-support
+
+Redirect 301 /category/internal-audit-fraud.php https://www.nigerianseminarsandtrainings.com/internal-audit-and-fraud
+
+Redirect 301 /category/internal-audit-fraud https://www.nigerianseminarsandtrainings.com/internal-audit-and-fraud
+
+# New Category redirect
+
+Redirect 301 /category/administrative-and-secretarial https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+Redirect 301 /category/administrative-and-secretarial.php https://www.nigerianseminarsandtrainings.com/administrative-and-secretarial
+
+Redirect 301 /category/agriculture-and-rural-development https://www.nigerianseminarsandtrainings.com/agriculture-and-rural-development
+Redirect 301 /category/agriculture-and-rural-development.php https://www.nigerianseminarsandtrainings.com/agriculture-and-rural-development
+
+Redirect 301 /category/aviation-and-maritime https://www.nigerianseminarsandtrainings.com/aviation-and-maritime
+Redirect 301 /category/aviation-and-maritime.php https://www.nigerianseminarsandtrainings.com/aviation-and-maritime
+
+Redirect 301 /category/banking-and-insurance https://www.nigerianseminarsandtrainings.com/banking-and-insurance
+Redirect 301 /category/banking-and-insurance.php https://www.nigerianseminarsandtrainings.com/banking-and-insurance
+
+Redirect 301 /category/conferences-agm-seminars https://www.nigerianseminarsandtrainings.com/conferences-agm-seminars
+Redirect 301 /category/conferences-agm-seminars.php https://www.nigerianseminarsandtrainings.com/conferences-agm-seminars
+
+Redirect 301 /category/education.php https://www.nigerianseminarsandtrainings.com/education
+Redirect 301 /category/education https://www.nigerianseminarsandtrainings.com/education
+
+Redirect 301 /category/e-learning https://www.nigerianseminarsandtrainings.com/e-learning
+Redirect 301 /category/e-learning.php https://www.nigerianseminarsandtrainings.com/e-learning
+
+Redirect 301 /category/economic-management https://www.nigerianseminarsandtrainings.com/economic-management
+Redirect 301 /category/economic-management.php https://www.nigerianseminarsandtrainings.com/economic-management
+
+Redirect 301 /category/engineering-and-technical-skills https://www.nigerianseminarsandtrainings.com/engineering-and-technical-skills
+Redirect 301 /category/engineering-and-technical-skills.php https://www.nigerianseminarsandtrainings.com/engineering-and-technical-skills
+
+Redirect 301 /category/entrepreneurship-and-business-development.php https://www.nigerianseminarsandtrainings.com/entrepreneurship-and-business-development
+Redirect 301 /category/entrepreneurship-and-business-development https://www.nigerianseminarsandtrainings.com/entrepreneurship-and-business-development
+
+Redirect 301 /category/executive-education https://www.nigerianseminarsandtrainings.com/executive-education
+Redirect 301 /category/executive-education.php https://www.nigerianseminarsandtrainings.com/executive-education
+
+Redirect 301 /category/finance-and-accounting https://www.nigerianseminarsandtrainings.com/finance-and-accounting
+Redirect 301 /category/finance-and-accounting.php https://www.nigerianseminarsandtrainings.com/finance-and-accounting
+
+Redirect 301 /category/general-management https://www.nigerianseminarsandtrainings.com/general-management
+Redirect 301 /category/general-management.php https://www.nigerianseminarsandtrainings.com/general-management
+
+Redirect 301 /category/corporate-governance https://www.nigerianseminarsandtrainings.com/corporate-governance
+Redirect 301 /category/corporate-governance.php https://www.nigerianseminarsandtrainings.com/corporate-governance
+
+Redirect 301 /category/health-and-hse https://www.nigerianseminarsandtrainings.com/health-and-hse
+Redirect 301 /category/health-and-hse.php https://www.nigerianseminarsandtrainings.com/health-and-hse
+
+Redirect 301 /category/human-resource-management.php https://www.nigerianseminarsandtrainings.com/human-resource-management
+Redirect 301 /category/human-resource-management https://www.nigerianseminarsandtrainings.com/human-resource-management
+
+Redirect 301 /category/information-and-communications-technology https://www.nigerianseminarsandtrainings.com/information-and-communications-technology
+Redirect 301 /category/information-and-communications-technology.php https://www.nigerianseminarsandtrainings.com/information-and-communications-technology
+
+Redirect 301 /category/leadership-and-self-development https://www.nigerianseminarsandtrainings.com/leadership-and-self-development
+Redirect 301 /category/leadership-and-self-development.php https://www.nigerianseminarsandtrainings.com/leadership-and-self-development
+
+Redirect 301 /category/legal-and-legislative https://www.nigerianseminarsandtrainings.com/legal-and-legislative
+Redirect 301 /category/legal-and-legislative.php https://www.nigerianseminarsandtrainings.com/legal-and-legislative
+
+Redirect 301 /category/logistics-and-supply-chain-management https://www.nigerianseminarsandtrainings.com/logistics-and-supply-chain-management
+Redirect 301 /category/logistics-and-supply-chain-management.php https://www.nigerianseminarsandtrainings.com/logistics-and-supply-chain-management
+
+Redirect 301 /category/management-consultancy https://www.nigerianseminarsandtrainings.com/management-consultancy
+Redirect 301 /category/management-consultancy.php https://www.nigerianseminarsandtrainings.com/management-consultancy
+
+Redirect 301 /category/marketing-and-sales-management https://www.nigerianseminarsandtrainings.com/marketing-and-sales-management
+Redirect 301 /category/marketing-and-sales-management.php https://www.nigerianseminarsandtrainings.com/marketing-and-sales-management
+
+Redirect 301 /category/media-and-communication https://www.nigerianseminarsandtrainings.com/media-and-communication
+Redirect 301 /category/media-and-communication.php https://www.nigerianseminarsandtrainings.com/media-and-communication
+
+Redirect 301 /category/oil-and-gas-energy-and-power https://www.nigerianseminarsandtrainings.com/oil-and-gas-energy-and-power
+Redirect 301 /category/oil-and-gas-energy-and-power.php https://www.nigerianseminarsandtrainings.com/oil-and-gas-energy-and-power
+
+Redirect 301 /category/operations-management.php https://www.nigerianseminarsandtrainings.com/operations-management
+Redirect 301 /category/operations-management https://www.nigerianseminarsandtrainings.com/operations-management
+
+Redirect 301 /category/project-management https://www.nigerianseminarsandtrainings.com/project-management
+Redirect 301 /category/project-management.php https://www.nigerianseminarsandtrainings.com/project-management
+
+Redirect 301 /category/public-administration https://www.nigerianseminarsandtrainings.com/public-administration
+Redirect 301 /category/public-administration.php https://www.nigerianseminarsandtrainings.com/public-administration
+
+Redirect 301 /category/real-estate-management.php https://www.nigerianseminarsandtrainings.com/real-estate-management
+Redirect 301 /category/real-estate-management https://www.nigerianseminarsandtrainings.com/real-estate-management
+
+Redirect 301 /category/research-methodology-and-analytics https://www.nigerianseminarsandtrainings.com/research-methodology-and-analytics
+Redirect 301 /category/research-methodology-and-analytics.php https://www.nigerianseminarsandtrainings.com/research-methodology-and-analytics
+
+Redirect 301 /category/risk-management.php https://www.nigerianseminarsandtrainings.com/risk-management
+Redirect 301 /category/risk-management https://www.nigerianseminarsandtrainings.com/risk-management
+
+Redirect 301 /category/security-and-crime-prevention https://www.nigerianseminarsandtrainings.com/security-and-crime-prevention
+Redirect 301 /category/security-and-crime-prevention.php https://www.nigerianseminarsandtrainings.com/security-and-crime-prevention
+
+Redirect 301 /category/strategic-management.php https://www.nigerianseminarsandtrainings.com/strategic-management
+Redirect 301 /category/strategic-management https://www.nigerianseminarsandtrainings.com/strategic-management
+
+Redirect 301 /category/pre-retirement-and-new-beginnings https://www.nigerianseminarsandtrainings.com/pre-retirement-and-new-beginnings
+Redirect 301 /category/pre-retirement-and-new-beginnings.php https://www.nigerianseminarsandtrainings.com/pre-retirement-and-new-beginnings
+
+Redirect 301 /category/vocational-education-and-training https://www.nigerianseminarsandtrainings.com/vocational-education-and-training
+Redirect 301 /category/vocational-education-and-training.php https://www.nigerianseminarsandtrainings.com/vocational-education-and-training
+
+Redirect 301 /category/telecommunications.php https://www.nigerianseminarsandtrainings.com/telecommunications
+Redirect 301 /category/telecommunications https://www.nigerianseminarsandtrainings.com/telecommunications
+
+Redirect 301 /category/time-and-self-management https://www.nigerianseminarsandtrainings.com/time-and-self-management
+Redirect 301 /category/time-and-self-management.php https://www.nigerianseminarsandtrainings.com/time-and-self-management
+
+Redirect 301 /category/customer-service-and-support https://www.nigerianseminarsandtrainings.com/customer-service-and-support
+Redirect 301 /category/customer-service-and-support.php https://www.nigerianseminarsandtrainings.com/customer-service-and-support
+
+Redirect 301 /category/internal-audit-and-fraud https://www.nigerianseminarsandtrainings.com/internal-audit-and-fraud
+Redirect 301 /category/internal-audit-and-fraud.php https://www.nigerianseminarsandtrainings.com/internal-audit-and-fraud
+
+#other redircts
+
+Redirect 301 /all_event https://www.nigerianseminarsandtrainings.com/all-event
+
+Redirect 301 /training_providers https://www.nigerianseminarsandtrainings.com/training-providers
+
+Redirect 301  /all_vacancies https://www.nigerianseminarsandtrainings.com/all-vacancies 
+
+Redirect 301  /all_event_tag_search https://www.nigerianseminarsandtrainings.com/all-event-tag-search 
+
+Redirect 301  /add_event https://www.nigerianseminarsandtrainings.com/add-event
+
+Redirect 301  /add_video https://www.nigerianseminarsandtrainings.com/add-video
+
+Redirect 301  /biz_info https://www.nigerianseminarsandtrainings.com/biz-info
+
+Redirect 301  /videos_all https://www.nigerianseminarsandtrainings.com/videos-all
+
+Redirect 301  /terms_of_use https://www.nigerianseminarsandtrainings.com/terms-of-use
+
+Redirect 301  /privacy_policy https://www.nigerianseminarsandtrainings.com/privacy-policy
+
+Redirect 301  /sitemap_page https://www.nigerianseminarsandtrainings.com/sitemap-page
+
+Redirect 301  /event_managers https://www.nigerianseminarsandtrainings.com/event-managers
+
+Redirect 301  /past_event https://www.nigerianseminarsandtrainings.com/past-event
+
+Redirect 301  /video_watch https://www.nigerianseminarsandtrainings.com/video-watch
+
+Redirect 301  /all_event.php https://www.nigerianseminarsandtrainings.com/all-event 
+
+Redirect 301  /all_vacancies.php https://www.nigerianseminarsandtrainings.com/all-vacancies 
+
+Redirect 301  /all_event_tag_search.php https://www.nigerianseminarsandtrainings.com/all-event-tag-search 
+
+Redirect 301  /add_event.php https://www.nigerianseminarsandtrainings.com/add-event
+
+Redirect 301  /add_video.php https://www.nigerianseminarsandtrainings.com/add-video
+
+Redirect 301  /biz_info.php https://www.nigerianseminarsandtrainings.com/biz-info
+
+Redirect 301  /videos_all.php https://www.nigerianseminarsandtrainings.com/videos-all
+
+Redirect 301  /terms_of_use.php https://www.nigerianseminarsandtrainings.com/terms-of-use
+
+Redirect 301  /privacy_policy.php https://www.nigerianseminarsandtrainings.com/privacy-policy
+
+Redirect 301  /sitemap_page.php https://www.nigerianseminarsandtrainings.com/sitemap-page
+
+Redirect 301  /event_managers.php https://www.nigerianseminarsandtrainings.com/event-managers
+
+Redirect 301  /past_event.php https://www.nigerianseminarsandtrainings.com/past-event
+
+Redirect 301  /video_watch.php https://www.nigerianseminarsandtrainings.com/video-watch
+
+Redirect 301 /training-providers/countries/Nigeria https://www.nigerianseminarsandtrainings.com/training-provider/nigeria
+Redirect 301 /training-providers/countries/Nigeria.php https://www.nigerianseminarsandtrainings.com/training-provider/nigeria
+
+#countries Redirect
+
+Redirect 301 /countries/algeria https://www.nigerianseminarsandtrainings.com/algeria
+Redirect 301 /countries/angola https://www.nigerianseminarsandtrainings.com/angola
+Redirect 301 /countries/benin https://www.nigerianseminarsandtrainings.com/benin
+Redirect 301 /countries/botswana https://www.nigerianseminarsandtrainings.com/botswana
+Redirect 301 /countries/burkina https://www.nigerianseminarsandtrainings.com/burkina
+Redirect 301 /countries/burundi https://www.nigerianseminarsandtrainings.com/burundi
+Redirect 301 /countries/cameroon https://www.nigerianseminarsandtrainings.com/cameroon
+Redirect 301 /countries/cape-verde https://www.nigerianseminarsandtrainings.com/cape-verde
+Redirect 301 /countries/central-african-republic https://www.nigerianseminarsandtrainings.com/central-african-republic
+Redirect 301 /countries/chad https://www.nigerianseminarsandtrainings.com/chad
+Redirect 301 /countries/comoros https://www.nigerianseminarsandtrainings.com/comoros
+Redirect 301 /countries/congo https://www.nigerianseminarsandtrainings.com/congo
+Redirect 301 /countries/congo-democratic-republic-of https://www.nigerianseminarsandtrainings.com/congo-democratic-republic-of
+Redirect 301 /countries/djibouti https://www.nigerianseminarsandtrainings.com/djibouti
+Redirect 301 /countries/egypt https://www.nigerianseminarsandtrainings.com/egypt
+Redirect 301 /countries/equatorial-guinea https://www.nigerianseminarsandtrainings.com/equatorial-guinea
+Redirect 301 /countries/eritrea https://www.nigerianseminarsandtrainings.com/eritrea
+Redirect 301 /countries/ethiopia https://www.nigerianseminarsandtrainings.com/ethiopia
+Redirect 301 /countries/gabon https://www.nigerianseminarsandtrainings.com/gabon
+Redirect 301 /countries/gambia https://www.nigerianseminarsandtrainings.com/gambia
+Redirect 301 /countries/ghana https://www.nigerianseminarsandtrainings.com/ghana
+Redirect 301 /countries/guinea https://www.nigerianseminarsandtrainings.com/guinea
+Redirect 301 /countries/guinea-bissau https://www.nigerianseminarsandtrainings.com/guinea-bissau
+Redirect 301 /countries/ivory-coast https://www.nigerianseminarsandtrainings.com/ivory-coast
+Redirect 301 /countries/kenya https://www.nigerianseminarsandtrainings.com/kenya
+Redirect 301 /countries/lesotho https://www.nigerianseminarsandtrainings.com/lesotho
+Redirect 301 /countries/liberia https://www.nigerianseminarsandtrainings.com/liberia
+Redirect 301 /countries/libya https://www.nigerianseminarsandtrainings.com/libya
+Redirect 301 /countries/madagascar https://www.nigerianseminarsandtrainings.com/madagascar
+Redirect 301 /countries/malawi https://www.nigerianseminarsandtrainings.com/malawi
+Redirect 301 /countries/mali https://www.nigerianseminarsandtrainings.com/mali
+Redirect 301 /countries/mauritania https://www.nigerianseminarsandtrainings.com/mauritania
+Redirect 301 /countries/mauritius https://www.nigerianseminarsandtrainings.com/mauritius
+Redirect 301 /countries/morocco https://www.nigerianseminarsandtrainings.com/morocco
+Redirect 301 /countries/mozambique https://www.nigerianseminarsandtrainings.com/mozambique
+Redirect 301 /countries/namibia https://www.nigerianseminarsandtrainings.com/namibia
+Redirect 301 /countries/niger https://www.nigerianseminarsandtrainings.com/niger
+Redirect 301 /countries/nigeria https://www.nigerianseminarsandtrainings.com/nigeria
+Redirect 301 /countries/rwanda https://www.nigerianseminarsandtrainings.com/rwanda
+Redirect 301 /countries/sao-tome-and-principe https://www.nigerianseminarsandtrainings.com/sao-tome-and-principe
+Redirect 301 /countries/senegal https://www.nigerianseminarsandtrainings.com/senegal
+Redirect 301 /countries/seychelles https://www.nigerianseminarsandtrainings.com/seychelles
+Redirect 301 /countries/sierra-leone https://www.nigerianseminarsandtrainings.com/sierra-leone
+Redirect 301 /countries/somalia https://www.nigerianseminarsandtrainings.com/somalia
+Redirect 301 /countries/south-africa https://www.nigerianseminarsandtrainings.com/south-africa
+Redirect 301 /countries/south-sudan https://www.nigerianseminarsandtrainings.com/south-sudan
+Redirect 301 /countries/sudan https://www.nigerianseminarsandtrainings.com/sudan
+Redirect 301 /countries/swaziland https://www.nigerianseminarsandtrainings.com/swaziland
+Redirect 301 /countries/tanzania https://www.nigerianseminarsandtrainings.com/tanzania
+Redirect 301 /countries/togo https://www.nigerianseminarsandtrainings.com/togo
+Redirect 301 /countries/tunisia https://www.nigerianseminarsandtrainings.com/tunisia
+Redirect 301 /countries/uganda https://www.nigerianseminarsandtrainings.com/uganda
+Redirect 301 /countries/zambia https://www.nigerianseminarsandtrainings.com/zambia
+Redirect 301 /countries/zimbabwe https://www.nigerianseminarsandtrainings.com/zimbabwe
+Redirect 301 /countries/afghanistan https://www.nigerianseminarsandtrainings.com/afghanistan
+Redirect 301 /countries/bahrain https://www.nigerianseminarsandtrainings.com/bahrain
+Redirect 301 /countries/bangladesh https://www.nigerianseminarsandtrainings.com/bangladesh
+Redirect 301 /countries/bhutan https://www.nigerianseminarsandtrainings.com/bhutan
+Redirect 301 /countries/brunei https://www.nigerianseminarsandtrainings.com/brunei
+Redirect 301 /countries/burma-myanmar- https://www.nigerianseminarsandtrainings.com/burma-myanmar-
+Redirect 301 /countries/burma-myanmar https://www.nigerianseminarsandtrainings.com/burma-myanmar-
+Redirect 301 /burma-myanmar https://www.nigerianseminarsandtrainings.com/burma-myanmar-
+Redirect 301 /countries/cambodia https://www.nigerianseminarsandtrainings.com/cambodia
+Redirect 301 /countries/china https://www.nigerianseminarsandtrainings.com/china
+Redirect 301 /countries/east-timor https://www.nigerianseminarsandtrainings.com/east-timor
+Redirect 301 /countries/india https://www.nigerianseminarsandtrainings.com/india
+Redirect 301 /countries/indonesia https://www.nigerianseminarsandtrainings.com/indonesia
+Redirect 301 /countries/iran https://www.nigerianseminarsandtrainings.com/iran
+Redirect 301 /countries/iraq https://www.nigerianseminarsandtrainings.com/iraq
+Redirect 301 /countries/israel https://www.nigerianseminarsandtrainings.com/israel
+Redirect 301 /countries/japan https://www.nigerianseminarsandtrainings.com/japan
+Redirect 301 /countries/jordan https://www.nigerianseminarsandtrainings.com/jordan
+Redirect 301 /countries/kazakhstan https://www.nigerianseminarsandtrainings.com/kazakhstan
+Redirect 301 /countries/korea-north https://www.nigerianseminarsandtrainings.com/korea-north
+Redirect 301 /countries/korea-south https://www.nigerianseminarsandtrainings.com/korea-south
+Redirect 301 /countries/kuwait https://www.nigerianseminarsandtrainings.com/kuwait
+Redirect 301 /countries/kyrgyzstan https://www.nigerianseminarsandtrainings.com/kyrgyzstan
+Redirect 301 /countries/laos https://www.nigerianseminarsandtrainings.com/laos
+Redirect 301 /countries/lebanon https://www.nigerianseminarsandtrainings.com/lebanon
+Redirect 301 /countries/malaysia https://www.nigerianseminarsandtrainings.com/malaysia
+Redirect 301 /countries/maldives https://www.nigerianseminarsandtrainings.com/maldives
+Redirect 301 /countries/mongolia https://www.nigerianseminarsandtrainings.com/mongolia
+Redirect 301 /countries/nepal https://www.nigerianseminarsandtrainings.com/nepal
+Redirect 301 /countries/oman https://www.nigerianseminarsandtrainings.com/oman
+Redirect 301 /countries/pakistan https://www.nigerianseminarsandtrainings.com/pakistan
+Redirect 301 /countries/philippines https://www.nigerianseminarsandtrainings.com/philippines
+Redirect 301 /countries/qatar https://www.nigerianseminarsandtrainings.com/qatar
+Redirect 301 /countries/russian-federation https://www.nigerianseminarsandtrainings.com/russian-federation
+Redirect 301 /countries/saudi-arabia https://www.nigerianseminarsandtrainings.com/saudi-arabia
+Redirect 301 /countries/singapore https://www.nigerianseminarsandtrainings.com/singapore
+Redirect 301 /countries/sri-lanka https://www.nigerianseminarsandtrainings.com/sri-lanka
+Redirect 301 /countries/syria https://www.nigerianseminarsandtrainings.com/syria
+Redirect 301 /countries/tajikistan https://www.nigerianseminarsandtrainings.com/tajikistan
+Redirect 301 /countries/thailand https://www.nigerianseminarsandtrainings.com/thailand
+Redirect 301 /countries/turkey https://www.nigerianseminarsandtrainings.com/turkey
+Redirect 301 /countries/turkmenistan https://www.nigerianseminarsandtrainings.com/turkmenistan
+Redirect 301 /countries/united-arab-emirates https://www.nigerianseminarsandtrainings.com/united-arab-emirates
+Redirect 301 /countries/uzbekistan https://www.nigerianseminarsandtrainings.com/uzbekistan
+Redirect 301 /countries/vietnam https://www.nigerianseminarsandtrainings.com/vietnam
+Redirect 301 /countries/yemen https://www.nigerianseminarsandtrainings.com/yemen
+Redirect 301 /countries/albania https://www.nigerianseminarsandtrainings.com/albania
+Redirect 301 /countries/andorra https://www.nigerianseminarsandtrainings.com/andorra
+Redirect 301 /countries/armenia https://www.nigerianseminarsandtrainings.com/armenia
+Redirect 301 /countries/austria https://www.nigerianseminarsandtrainings.com/austria
+Redirect 301 /countries/azerbaijan https://www.nigerianseminarsandtrainings.com/azerbaijan
+Redirect 301 /countries/belarus https://www.nigerianseminarsandtrainings.com/belarus
+Redirect 301 /countries/belgium https://www.nigerianseminarsandtrainings.com/belgium
+Redirect 301 /countries/bosnia-and-herzegovina https://www.nigerianseminarsandtrainings.com/bosnia-and-herzegovina
+Redirect 301 /countries/bulgaria https://www.nigerianseminarsandtrainings.com/bulgaria
+Redirect 301 /countries/croatia https://www.nigerianseminarsandtrainings.com/croatia
+Redirect 301 /countries/cyprus https://www.nigerianseminarsandtrainings.com/cyprus
+Redirect 301 /countries/czech-republic https://www.nigerianseminarsandtrainings.com/czech-republic
+Redirect 301 /countries/denmark https://www.nigerianseminarsandtrainings.com/denmark
+Redirect 301 /countries/estonia https://www.nigerianseminarsandtrainings.com/estonia
+Redirect 301 /countries/finland https://www.nigerianseminarsandtrainings.com/finland
+Redirect 301 /countries/france https://www.nigerianseminarsandtrainings.com/france
+Redirect 301 /countries/georgia https://www.nigerianseminarsandtrainings.com/georgia
+Redirect 301 /countries/germany https://www.nigerianseminarsandtrainings.com/germany
+Redirect 301 /countries/greece https://www.nigerianseminarsandtrainings.com/greece
+Redirect 301 /countries/hungary https://www.nigerianseminarsandtrainings.com/hungary
+Redirect 301 /countries/iceland https://www.nigerianseminarsandtrainings.com/iceland
+Redirect 301 /countries/ireland https://www.nigerianseminarsandtrainings.com/ireland
+Redirect 301 /countries/italy https://www.nigerianseminarsandtrainings.com/italy
+Redirect 301 /countries/latvia https://www.nigerianseminarsandtrainings.com/latvia
+Redirect 301 /countries/liechtenstein https://www.nigerianseminarsandtrainings.com/liechtenstein
+Redirect 301 /countries/lithuania https://www.nigerianseminarsandtrainings.com/lithuania
+Redirect 301 /countries/luxembourg https://www.nigerianseminarsandtrainings.com/luxembourg
+Redirect 301 /countries/macedonia https://www.nigerianseminarsandtrainings.com/macedonia
+Redirect 301 /countries/malta https://www.nigerianseminarsandtrainings.com/malta
+Redirect 301 /countries/moldova https://www.nigerianseminarsandtrainings.com/moldova
+Redirect 301 /countries/monaco https://www.nigerianseminarsandtrainings.com/monaco
+Redirect 301 /countries/montenegro https://www.nigerianseminarsandtrainings.com/montenegro
+Redirect 301 /countries/netherlands https://www.nigerianseminarsandtrainings.com/netherlands
+Redirect 301 /countries/norway https://www.nigerianseminarsandtrainings.com/norway
+Redirect 301 /countries/poland https://www.nigerianseminarsandtrainings.com/poland
+Redirect 301 /countries/portugal https://www.nigerianseminarsandtrainings.com/portugal
+Redirect 301 /countries/romania https://www.nigerianseminarsandtrainings.com/romania
+Redirect 301 /countries/san-marino https://www.nigerianseminarsandtrainings.com/san-marino
+Redirect 301 /countries/serbia https://www.nigerianseminarsandtrainings.com/serbia
+Redirect 301 /countries/slovakia https://www.nigerianseminarsandtrainings.com/slovakia
+Redirect 301 /countries/slovenia https://www.nigerianseminarsandtrainings.com/slovenia
+Redirect 301 /countries/spain https://www.nigerianseminarsandtrainings.com/spain
+Redirect 301 /countries/sweden https://www.nigerianseminarsandtrainings.com/sweden
+Redirect 301 /countries/switzerland https://www.nigerianseminarsandtrainings.com/switzerland
+Redirect 301 /countries/ukraine https://www.nigerianseminarsandtrainings.com/ukraine
+Redirect 301 /countries/united-kingdom https://www.nigerianseminarsandtrainings.com/united-kingdom
+Redirect 301 /countries/vatican-city https://www.nigerianseminarsandtrainings.com/vatican-city
+Redirect 301 /countries/antigua-and-barbuda https://www.nigerianseminarsandtrainings.com/antigua-and-barbuda
+Redirect 301 /countries/bahamas https://www.nigerianseminarsandtrainings.com/bahamas
+Redirect 301 /countries/barbados https://www.nigerianseminarsandtrainings.com/barbados
+Redirect 301 /countries/belize https://www.nigerianseminarsandtrainings.com/belize
+Redirect 301 /countries/canada https://www.nigerianseminarsandtrainings.com/canada
+Redirect 301 /countries/costa-rica https://www.nigerianseminarsandtrainings.com/costa-rica
+Redirect 301 /countries/cuba https://www.nigerianseminarsandtrainings.com/cuba
+Redirect 301 /countries/dominica https://www.nigerianseminarsandtrainings.com/dominica
+Redirect 301 /countries/dominican-republic https://www.nigerianseminarsandtrainings.com/dominican-republic
+Redirect 301 /countries/el-salvador https://www.nigerianseminarsandtrainings.com/el-salvador
+Redirect 301 /countries/grenada https://www.nigerianseminarsandtrainings.com/grenada
+Redirect 301 /countries/guatemala https://www.nigerianseminarsandtrainings.com/guatemala
+Redirect 301 /countries/haiti https://www.nigerianseminarsandtrainings.com/haiti
+Redirect 301 /countries/honduras https://www.nigerianseminarsandtrainings.com/honduras
+Redirect 301 /countries/jamaica https://www.nigerianseminarsandtrainings.com/jamaica
+Redirect 301 /countries/mexico https://www.nigerianseminarsandtrainings.com/mexico
+Redirect 301 /countries/nicaragua https://www.nigerianseminarsandtrainings.com/nicaragua
+Redirect 301 /countries/panama https://www.nigerianseminarsandtrainings.com/panama
+Redirect 301 /countries/saint-kitts-and-nevis https://www.nigerianseminarsandtrainings.com/saint-kitts-and-nevis
+Redirect 301 /countries/saint-lucia https://www.nigerianseminarsandtrainings.com/saint-lucia
+Redirect 301 /countries/saint-vincent-and-the-grenadines https://www.nigerianseminarsandtrainings.com/saint-vincent-and-the-grenadines
+Redirect 301 /countries/trinidad-and-tobago https://www.nigerianseminarsandtrainings.com/trinidad-and-tobago
+Redirect 301 /countries/united-states https://www.nigerianseminarsandtrainings.com/united-states
+Redirect 301 /countries/australia https://www.nigerianseminarsandtrainings.com/australia
+Redirect 301 /countries/fiji https://www.nigerianseminarsandtrainings.com/fiji
+Redirect 301 /countries/kiribati https://www.nigerianseminarsandtrainings.com/kiribati
+Redirect 301 /countries/marshall-islands https://www.nigerianseminarsandtrainings.com/marshall-islands
+Redirect 301 /countries/micronesia https://www.nigerianseminarsandtrainings.com/micronesia
+Redirect 301 /countries/nauru https://www.nigerianseminarsandtrainings.com/nauru
+Redirect 301 /countries/new-zealand https://www.nigerianseminarsandtrainings.com/new-zealand
+Redirect 301 /countries/palau https://www.nigerianseminarsandtrainings.com/palau
+Redirect 301 /countries/papua-new-guinea https://www.nigerianseminarsandtrainings.com/papua-new-guinea
+Redirect 301 /countries/samoa https://www.nigerianseminarsandtrainings.com/samoa
+Redirect 301 /countries/solomon-islands https://www.nigerianseminarsandtrainings.com/solomon-islands
+Redirect 301 /countries/tonga https://www.nigerianseminarsandtrainings.com/tonga
+Redirect 301 /countries/tuvalu https://www.nigerianseminarsandtrainings.com/tuvalu
+Redirect 301 /countries/vanuatu https://www.nigerianseminarsandtrainings.com/vanuatu
+Redirect 301 /countries/argentina https://www.nigerianseminarsandtrainings.com/argentina
+Redirect 301 /countries/bolivia https://www.nigerianseminarsandtrainings.com/bolivia
+Redirect 301 /countries/brazil https://www.nigerianseminarsandtrainings.com/brazil
+Redirect 301 /countries/chile https://www.nigerianseminarsandtrainings.com/chile
+Redirect 301 /countries/colombia https://www.nigerianseminarsandtrainings.com/colombia
+Redirect 301 /countries/ecuador https://www.nigerianseminarsandtrainings.com/ecuador
+Redirect 301 /countries/guyana https://www.nigerianseminarsandtrainings.com/guyana
+Redirect 301 /countries/paraguay https://www.nigerianseminarsandtrainings.com/paraguay
+Redirect 301 /countries/peru https://www.nigerianseminarsandtrainings.com/peru
+Redirect 301 /countries/suriname https://www.nigerianseminarsandtrainings.com/suriname
+Redirect 301 /countries/uruguay https://www.nigerianseminarsandtrainings.com/uruguay
+Redirect 301 /countries/venezuela https://www.nigerianseminarsandtrainings.com/venezuela
+
+#State Redirect
+
+Redirect 301 /state/abia https://www.nigerianseminarsandtrainings.com/abia
+Redirect 301 /state/abuja https://www.nigerianseminarsandtrainings.com/abuja
+Redirect 301 /state/adamawa https://www.nigerianseminarsandtrainings.com/adamawa
+Redirect 301 /state/akwa-ibom https://www.nigerianseminarsandtrainings.com/akwa-ibom
+Redirect 301 /state/anambra https://www.nigerianseminarsandtrainings.com/anambra
+Redirect 301 /state/bauchi https://www.nigerianseminarsandtrainings.com/bauchi
+Redirect 301 /state/bayelsa https://www.nigerianseminarsandtrainings.com/bayelsa
+Redirect 301 /state/benue https://www.nigerianseminarsandtrainings.com/benue
+Redirect 301 /state/borno https://www.nigerianseminarsandtrainings.com/borno
+Redirect 301 /state/cross-river https://www.nigerianseminarsandtrainings.com/cross-river
+Redirect 301 /state/delta https://www.nigerianseminarsandtrainings.com/delta
+Redirect 301 /state/ebonyi https://www.nigerianseminarsandtrainings.com/ebonyi
+Redirect 301 /state/edo https://www.nigerianseminarsandtrainings.com/edo
+Redirect 301 /state/ekiti https://www.nigerianseminarsandtrainings.com/ekiti
+Redirect 301 /state/enugu https://www.nigerianseminarsandtrainings.com/enugu
+Redirect 301 /state/gombe https://www.nigerianseminarsandtrainings.com/gombe
+Redirect 301 /state/imo https://www.nigerianseminarsandtrainings.com/imo
+Redirect 301 /state/jigawa https://www.nigerianseminarsandtrainings.com/jigawa
+Redirect 301 /state/kaduna https://www.nigerianseminarsandtrainings.com/kaduna
+Redirect 301 /state/kano https://www.nigerianseminarsandtrainings.com/kano
+Redirect 301 /state/katsina https://www.nigerianseminarsandtrainings.com/katsina
+Redirect 301 /state/kebbi https://www.nigerianseminarsandtrainings.com/kebbi
+Redirect 301 /state/kogi https://www.nigerianseminarsandtrainings.com/kogi
+Redirect 301 /state/kwara https://www.nigerianseminarsandtrainings.com/kwara
+Redirect 301 /state/lagos https://www.nigerianseminarsandtrainings.com/lagos
+Redirect 301 /state/nasarawa https://www.nigerianseminarsandtrainings.com/nasarawa
+Redirect 301 /state/niger https://www.nigerianseminarsandtrainings.com/niger
+Redirect 301 /state/ogun https://www.nigerianseminarsandtrainings.com/ogun
+Redirect 301 /state/ondo https://www.nigerianseminarsandtrainings.com/ondo
+Redirect 301 /state/osun https://www.nigerianseminarsandtrainings.com/osun
+Redirect 301 /state/oyo https://www.nigerianseminarsandtrainings.com/oyo
+Redirect 301 /state/plateau https://www.nigerianseminarsandtrainings.com/plateau
+Redirect 301 /state/rivers https://www.nigerianseminarsandtrainings.com/rivers
+Redirect 301 /state/sokoto https://www.nigerianseminarsandtrainings.com/sokoto
+Redirect 301 /state/taraba https://www.nigerianseminarsandtrainings.com/taraba
+Redirect 301 /state/yobe https://www.nigerianseminarsandtrainings.com/yobe
+Redirect 301 /state/zamfara https://www.nigerianseminarsandtrainings.com/zamfara
+#end state redirect
+
+# NEW TRAINING PROVIDER REDIRECTS
+# New Training Provider Redirects for cattegories
+
+Redirect 301 /training-provider/categories/administrative-and-secretarial https://www.nigerianseminarsandtrainings.com/training-provider/administrative-and-secretarial
+Redirect 301 /training-provider/categories/administrative-and-secretarial.php https://www.nigerianseminarsandtrainings.com/training-provider/administrative-and-secretarial
+
+Redirect 301 /training-provider/categories/agriculture-and-rural-development https://www.nigerianseminarsandtrainings.com/training-provider/agriculture-and-rural-development
+Redirect 301 /training-provider/categories/agriculture-and-rural-development.php https://www.nigerianseminarsandtrainings.com/training-provider/agriculture-and-rural-development
+
+Redirect 301 /training-provider/categories/aviation-and-maritime https://www.nigerianseminarsandtrainings.com/training-provider/aviation-and-maritime
+Redirect 301 /training-provider/categories/aviation-and-maritime.php https://www.nigerianseminarsandtrainings.com/training-provider/aviation-and-maritime
+
+Redirect 301 /training-provider/categories/banking-and-insurance https://www.nigerianseminarsandtrainings.com/training-provider/banking-and-insurance
+Redirect 301 /training-provider/categories/banking-and-insurance.php https://www.nigerianseminarsandtrainings.com/training-provider/banking-and-insurance
+
+Redirect 301 /training-provider/categories/conferences-agm-seminars https://www.nigerianseminarsandtrainings.com/training-provider/conferences-agm-seminars
+Redirect 301 /training-provider/categories/conferences-agm-seminars.php https://www.nigerianseminarsandtrainings.com/training-provider/conferences-agm-seminars
+
+Redirect 301 /training-provider/categories/education https://www.nigerianseminarsandtrainings.com/training-provider/education
+Redirect 301 /training-provider/categories/education.php https://www.nigerianseminarsandtrainings.com/training-provider/education
+
+Redirect 301 /training-provider/categories/e-learning https://www.nigerianseminarsandtrainings.com/training-provider/e-learning
+Redirect 301 /training-provider/categories/e-learning.php https://www.nigerianseminarsandtrainings.com/training-provider/e-learning
+
+Redirect 301 /training-provider/categories/economic-management https://www.nigerianseminarsandtrainings.com/training-provider/economic-management
+Redirect 301 /training-provider/categories/economic-management.php https://www.nigerianseminarsandtrainings.com/training-provider/economic-management
+
+Redirect 301 /training-provider/categories/engineering-and-technical-skills https://www.nigerianseminarsandtrainings.com/training-provider/engineering-and-technical-skills
+Redirect 301 /training-provider/categories/engineering-and-technical-skills.php https://www.nigerianseminarsandtrainings.com/training-provider/engineering-and-technical-skills
+
+Redirect 301 /training-provider/categories/entrepreneurship-and-business-development https://www.nigerianseminarsandtrainings.com/training-provider/entrepreneurship-and-business-development
+Redirect 301 /training-provider/categories/entrepreneurship-and-business-development.php https://www.nigerianseminarsandtrainings.com/training-provider/entrepreneurship-and-business-development
+
+Redirect 301 /training-provider/categories/executive-education https://www.nigerianseminarsandtrainings.com/training-provider/executive-education
+Redirect 301 /training-provider/categories/executive-education.php https://www.nigerianseminarsandtrainings.com/training-provider/executive-education
+
+Redirect 301 /training-provider/categories/finance-and-accounting https://www.nigerianseminarsandtrainings.com/training-provider/finance-and-accounting
+Redirect 301 /training-provider/categories/finance-and-accounting.php https://www.nigerianseminarsandtrainings.com/training-provider/finance-and-accounting
+
+Redirect 301 /training-provider/categories/general-management https://www.nigerianseminarsandtrainings.com/training-provider/general-management
+Redirect 301 /training-provider/categories/general-management.php https://www.nigerianseminarsandtrainings.com/training-provider/general-management
+
+Redirect 301 /training-provider/categories/corporate-governance https://www.nigerianseminarsandtrainings.com/training-provider/corporate-governance
+Redirect 301 /training-provider/categories/corporate-governance.php https://www.nigerianseminarsandtrainings.com/training-provider/corporate-governance
+
+Redirect 301 /training-provider/categories/health-and-hse https://www.nigerianseminarsandtrainings.com/training-provider/health-and-hse
+Redirect 301 /training-provider/categories/health-and-hse.php https://www.nigerianseminarsandtrainings.com/training-provider/health-and-hse
+
+Redirect 301 /training-provider/categories/human-resource-management https://www.nigerianseminarsandtrainings.com/training-provider/human-resource-management
+Redirect 301 /training-provider/categories/human-resource-management.php https://www.nigerianseminarsandtrainings.com/training-provider/human-resource-management
+
+Redirect 301 /training-provider/categories/information-and-communications-technology https://www.nigerianseminarsandtrainings.com/training-provider/information-and-communications-technology
+Redirect 301 /training-provider/categories/information-and-communications-technology.php https://www.nigerianseminarsandtrainings.com/training-provider/information-and-communications-technology
+
+Redirect 301 /training-provider/categories/leadership-and-self-development https://www.nigerianseminarsandtrainings.com/training-provider/leadership-and-self-development
+Redirect 301 /training-provider/categories/leadership-and-self-development.php https://www.nigerianseminarsandtrainings.com/training-provider/leadership-and-self-development
+
+Redirect 301 /training-provider/categories/legal-and-legislative https://www.nigerianseminarsandtrainings.com/training-provider/legal-and-legislative
+Redirect 301 /training-provider/categories/legal-and-legislative.php https://www.nigerianseminarsandtrainings.com/training-provider/legal-and-legislative
+
+Redirect 301 /training-provider/categories/logistics-and-supply-chain-management https://www.nigerianseminarsandtrainings.com/training-provider/logistics-and-supply-chain-management
+Redirect 301 /training-provider/categories/logistics-and-supply-chain-management.php https://www.nigerianseminarsandtrainings.com/training-provider/logistics-and-supply-chain-management
+
+Redirect 301 /training-provider/categories/management-consultancy https://www.nigerianseminarsandtrainings.com/training-provider/management-consultancy
+Redirect 301 /training-provider/categories/management-consultancy.php https://www.nigerianseminarsandtrainings.com/training-provider/management-consultancy
+
+Redirect 301 /training-provider/categories/marketing-and-sales-management https://www.nigerianseminarsandtrainings.com/training-provider/marketing-and-sales-management
+Redirect 301 /training-provider/categories/marketing-and-sales-management.php https://www.nigerianseminarsandtrainings.com/training-provider/marketing-and-sales-management
+
+Redirect 301 /training-provider/categories/media-and-communication https://www.nigerianseminarsandtrainings.com/training-provider/media-and-communication
+Redirect 301 /training-provider/categories/media-and-communication.php https://www.nigerianseminarsandtrainings.com/training-provider/media-and-communication
+
+Redirect 301 /training-provider/categories/oil-and-gas-energy-and-power https://www.nigerianseminarsandtrainings.com/training-provider/oil-and-gas-energy-and-power
+Redirect 301 /training-provider/categories/oil-and-gas-energy-and-power.php https://www.nigerianseminarsandtrainings.com/training-provider/oil-and-gas-energy-and-power
+
+Redirect 301 /training-provider/categories/operations-management https://www.nigerianseminarsandtrainings.com/training-provider/operations-management
+Redirect 301 /training-provider/categories/operations-management.php https://www.nigerianseminarsandtrainings.com/training-provider/operations-management
+
+Redirect 301 /training-provider/categories/project-management https://www.nigerianseminarsandtrainings.com/training-provider/project-management
+Redirect 301 /training-provider/categories/project-management.php https://www.nigerianseminarsandtrainings.com/training-provider/project-management
+
+Redirect 301 /training-provider/categories/public-administration https://www.nigerianseminarsandtrainings.com/training-provider/public-administration
+Redirect 301 /training-provider/categories/public-administration.php https://www.nigerianseminarsandtrainings.com/training-provider/public-administration
+
+Redirect 301 /training-provider/categories/real-estate-management https://www.nigerianseminarsandtrainings.com/training-provider/real-estate-management
+Redirect 301 /training-provider/categories/real-estate-management.php https://www.nigerianseminarsandtrainings.com/training-provider/real-estate-management
+
+Redirect 301 /training-provider/categories/research-methodology-and-analytics https://www.nigerianseminarsandtrainings.com/training-provider/research-methodology-and-analytics
+Redirect 301 /training-provider/categories/research-methodology-and-analytics.php https://www.nigerianseminarsandtrainings.com/training-provider/research-methodology-and-analytics
+
+Redirect 301 /training-provider/categories/risk-management https://www.nigerianseminarsandtrainings.com/training-provider/risk-management
+Redirect 301 /training-provider/categories/risk-management.php https://www.nigerianseminarsandtrainings.com/training-provider/risk-management
+
+Redirect 301 /training-provider/categories/security-and-crime-prevention https://www.nigerianseminarsandtrainings.com/training-provider/security-and-crime-prevention
+Redirect 301 /training-provider/categories/security-and-crime-prevention.php https://www.nigerianseminarsandtrainings.com/training-provider/security-and-crime-prevention
+
+Redirect 301 /training-provider/categories/strategic-management https://www.nigerianseminarsandtrainings.com/training-provider/strategic-management
+Redirect 301 /training-provider/categories/strategic-management.php https://www.nigerianseminarsandtrainings.com/training-provider/strategic-management
+
+Redirect 301 /training-provider/categories/pre-retirement-and-new-beginnings https://www.nigerianseminarsandtrainings.com/training-provider/pre-retirement-and-new-beginnings
+Redirect 301 /training-provider/categories/pre-retirement-and-new-beginnings.php https://www.nigerianseminarsandtrainings.com/training-provider/pre-retirement-and-new-beginnings
+
+Redirect 301 /training-provider/categories/vocational-education-and-training https://www.nigerianseminarsandtrainings.com/training-provider/vocational-education-and-training
+Redirect 301 /training-provider/categories/vocational-education-and-training.php https://www.nigerianseminarsandtrainings.com/training-provider/vocational-education-and-training
+
+Redirect 301 /training-provider/categories/telecommunications https://www.nigerianseminarsandtrainings.com/training-provider/telecommunications
+Redirect 301 /training-provider/categories/telecommunications.php https://www.nigerianseminarsandtrainings.com/training-provider/telecommunications
+
+Redirect 301 /training-provider/categories/time-and-self-management https://www.nigerianseminarsandtrainings.com/training-provider/time-and-self-management
+Redirect 301 /training-provider/categories/time-and-self-management.php https://www.nigerianseminarsandtrainings.com/training-provider/time-and-self-management
+
+Redirect 301 /training-provider/categories/customer-service-and-support https://www.nigerianseminarsandtrainings.com/training-provider/customer-service-and-support
+Redirect 301 /training-provider/categories/customer-service-and-support.php https://www.nigerianseminarsandtrainings.com/training-provider/customer-service-and-support
+
+Redirect 301 /training-provider/categories/internal-audit-and-fraud https://www.nigerianseminarsandtrainings.com/training-provider/internal-audit-and-fraud
+Redirect 301 /training-provider/categories/internal-audit-and-fraud.php https://www.nigerianseminarsandtrainings.com/training-provider/internal-audit-and-fraud
+
+# New Training Provider Redirects for Countries
+
+Redirect 301 /training-provider/countries/algeria https://www.nigerianseminarsandtrainings.com/training-provider/algeria
+Redirect 301 /training-provider/countries/algeria.php https://www.nigerianseminarsandtrainings.com/training-provider/algeria
+
+Redirect 301 /training-provider/countries/angola https://www.nigerianseminarsandtrainings.com/training-provider/angola
+Redirect 301 /training-provider/countries/angola.php https://www.nigerianseminarsandtrainings.com/training-provider/angola
+
+Redirect 301 /training-provider/countries/benin https://www.nigerianseminarsandtrainings.com/training-provider/benin
+Redirect 301 /training-provider/countries/benin.php https://www.nigerianseminarsandtrainings.com/training-provider/benin
+
+Redirect 301 /training-provider/countries/botswana https://www.nigerianseminarsandtrainings.com/training-provider/botswana
+Redirect 301 /training-provider/countries/botswana.php https://www.nigerianseminarsandtrainings.com/training-provider/botswana
+
+Redirect 301 /training-provider/countries/burkina https://www.nigerianseminarsandtrainings.com/training-provider/burkina
+Redirect 301 /training-provider/countries/burkina.php https://www.nigerianseminarsandtrainings.com/training-provider/burkina
+
+Redirect 301 /training-provider/countries/burundi https://www.nigerianseminarsandtrainings.com/training-provider/burundi
+Redirect 301 /training-provider/countries/burundi.php https://www.nigerianseminarsandtrainings.com/training-provider/burundi
+
+Redirect 301 /training-provider/countries/cameroon https://www.nigerianseminarsandtrainings.com/training-provider/cameroon
+Redirect 301 /training-provider/countries/cameroon.php https://www.nigerianseminarsandtrainings.com/training-provider/cameroon
+
+Redirect 301 /training-provider/countries/cape-verde https://www.nigerianseminarsandtrainings.com/training-provider/cape-verde
+Redirect 301 /training-provider/countries/cape-verde.php https://www.nigerianseminarsandtrainings.com/training-provider/cape-verde
+
+Redirect 301 /training-provider/countries/central-african-republic https://www.nigerianseminarsandtrainings.com/training-provider/central-african-republic
+Redirect 301 /training-provider/countries/central-african-republic.php https://www.nigerianseminarsandtrainings.com/training-provider/central-african-republic
+
+Redirect 301 /training-provider/countries/chad https://www.nigerianseminarsandtrainings.com/training-provider/chad
+Redirect 301 /training-provider/countries/chad.php https://www.nigerianseminarsandtrainings.com/training-provider/chad
+
+Redirect 301 /training-provider/countries/comoros https://www.nigerianseminarsandtrainings.com/training-provider/comoros
+Redirect 301 /training-provider/countries/comoros.php https://www.nigerianseminarsandtrainings.com/training-provider/comoros
+
+Redirect 301 /training-provider/countries/congo https://www.nigerianseminarsandtrainings.com/training-provider/congo
+Redirect 301 /training-provider/countries/congo.php https://www.nigerianseminarsandtrainings.com/training-provider/congo
+
+Redirect 301 /training-provider/countries/congo-democratic-republic-of https://www.nigerianseminarsandtrainings.com/training-provider/congo-democratic-republic-of
+Redirect 301 /training-provider/countries/congo-democratic-republic-of.php https://www.nigerianseminarsandtrainings.com/training-provider/congo-democratic-republic-of
+
+Redirect 301 /training-provider/countries/djibouti https://www.nigerianseminarsandtrainings.com/training-provider/djibouti
+Redirect 301 /training-provider/countries/djibouti.php https://www.nigerianseminarsandtrainings.com/training-provider/djibouti
+
+Redirect 301 /training-provider/countries/egypt https://www.nigerianseminarsandtrainings.com/training-provider/egypt
+Redirect 301 /training-provider/countries/egypt.php https://www.nigerianseminarsandtrainings.com/training-provider/egypt
+
+Redirect 301 /training-provider/countries/equatorial-guinea https://www.nigerianseminarsandtrainings.com/training-provider/equatorial-guinea
+Redirect 301 /training-provider/countries/equatorial-guinea.php https://www.nigerianseminarsandtrainings.com/training-provider/equatorial-guinea
+
+Redirect 301 /training-provider/countries/eritrea https://www.nigerianseminarsandtrainings.com/training-provider/eritrea
+Redirect 301 /training-provider/countries/eritrea.php https://www.nigerianseminarsandtrainings.com/training-provider/eritrea
+
+Redirect 301 /training-provider/countries/ethiopia https://www.nigerianseminarsandtrainings.com/training-provider/ethiopia
+Redirect 301 /training-provider/countries/ethiopia.php https://www.nigerianseminarsandtrainings.com/training-provider/ethiopia
+
+Redirect 301 /training-provider/countries/gabon https://www.nigerianseminarsandtrainings.com/training-provider/gabon
+Redirect 301 /training-provider/countries/gabon.php https://www.nigerianseminarsandtrainings.com/training-provider/gabon
+
+Redirect 301 /training-provider/countries/gambia https://www.nigerianseminarsandtrainings.com/training-provider/gambia
+Redirect 301 /training-provider/countries/gambia.php https://www.nigerianseminarsandtrainings.com/training-provider/gambia
+
+Redirect 301 /training-provider/countries/ghana https://www.nigerianseminarsandtrainings.com/training-provider/ghana
+Redirect 301 /training-provider/countries/ghana.php https://www.nigerianseminarsandtrainings.com/training-provider/ghana
+
+Redirect 301 /training-provider/countries/guinea https://www.nigerianseminarsandtrainings.com/training-provider/guinea
+Redirect 301 /training-provider/countries/guinea.php https://www.nigerianseminarsandtrainings.com/training-provider/guinea
+
+Redirect 301 /training-provider/countries/guinea-bissau https://www.nigerianseminarsandtrainings.com/training-provider/guinea-bissau
+Redirect 301 /training-provider/countries/guinea-bissau.php https://www.nigerianseminarsandtrainings.com/training-provider/guinea-bissau
+
+Redirect 301 /training-provider/countries/ivory-coast https://www.nigerianseminarsandtrainings.com/training-provider/ivory-coast
+Redirect 301 /training-provider/countries/ivory-coast.php https://www.nigerianseminarsandtrainings.com/training-provider/ivory-coast
+
+Redirect 301 /training-provider/countries/kenya https://www.nigerianseminarsandtrainings.com/training-provider/kenya
+Redirect 301 /training-provider/countries/kenya.php https://www.nigerianseminarsandtrainings.com/training-provider/kenya
+
+Redirect 301 /training-provider/countries/lesotho https://www.nigerianseminarsandtrainings.com/training-provider/lesotho
+Redirect 301 /training-provider/countries/lesotho.php https://www.nigerianseminarsandtrainings.com/training-provider/lesotho
+
+Redirect 301 /training-provider/countries/liberia https://www.nigerianseminarsandtrainings.com/training-provider/liberia
+Redirect 301 /training-provider/countries/liberia.php https://www.nigerianseminarsandtrainings.com/training-provider/liberia
+
+Redirect 301 /training-provider/countries/libya https://www.nigerianseminarsandtrainings.com/training-provider/libya
+Redirect 301 /training-provider/countries/libya.php https://www.nigerianseminarsandtrainings.com/training-provider/libya
+
+Redirect 301 /training-provider/countries/madagascar https://www.nigerianseminarsandtrainings.com/training-provider/madagascar
+Redirect 301 /training-provider/countries/madagascar.php https://www.nigerianseminarsandtrainings.com/training-provider/madagascar
+
+Redirect 301 /training-provider/countries/malawi https://www.nigerianseminarsandtrainings.com/training-provider/malawi
+Redirect 301 /training-provider/countries/malawi.php https://www.nigerianseminarsandtrainings.com/training-provider/malawi
+
+Redirect 301 /training-provider/countries/mali https://www.nigerianseminarsandtrainings.com/training-provider/mali
+Redirect 301 /training-provider/countries/mali.php https://www.nigerianseminarsandtrainings.com/training-provider/mali
+
+Redirect 301 /training-provider/countries/mauritania https://www.nigerianseminarsandtrainings.com/training-provider/mauritania
+Redirect 301 /training-provider/countries/mauritania.php https://www.nigerianseminarsandtrainings.com/training-provider/mauritania
+
+Redirect 301 /training-provider/countries/mauritius https://www.nigerianseminarsandtrainings.com/training-provider/mauritius
+Redirect 301 /training-provider/countries/mauritius.php https://www.nigerianseminarsandtrainings.com/training-provider/mauritius
+
+Redirect 301 /training-provider/countries/morocco https://www.nigerianseminarsandtrainings.com/training-provider/morocco
+Redirect 301 /training-provider/countries/morocco.php https://www.nigerianseminarsandtrainings.com/training-provider/morocco
+
+Redirect 301 /training-provider/countries/mozambique https://www.nigerianseminarsandtrainings.com/training-provider/mozambique
+Redirect 301 /training-provider/countries/mozambique.php https://www.nigerianseminarsandtrainings.com/training-provider/mozambique
+
+Redirect 301 /training-provider/countries/namibia https://www.nigerianseminarsandtrainings.com/training-provider/namibia
+Redirect 301 /training-provider/countries/namibia.php https://www.nigerianseminarsandtrainings.com/training-provider/namibia
+
+Redirect 301 /training-provider/countries/niger https://www.nigerianseminarsandtrainings.com/training-provider/niger
+Redirect 301 /training-provider/countries/niger.php https://www.nigerianseminarsandtrainings.com/training-provider/niger
+
+Redirect 301 /training-provider/countries/nigeria https://www.nigerianseminarsandtrainings.com/training-provider/nigeria
+Redirect 301 /training-provider/countries/nigeria.php https://www.nigerianseminarsandtrainings.com/training-provider/nigeria
+
+Redirect 301 /training-provider/countries/rwanda https://www.nigerianseminarsandtrainings.com/training-provider/rwanda
+Redirect 301 /training-provider/countries/rwanda.php https://www.nigerianseminarsandtrainings.com/training-provider/rwanda
+
+Redirect 301 /training-provider/countries/sao-tome-and-principe https://www.nigerianseminarsandtrainings.com/training-provider/sao-tome-and-principe
+Redirect 301 /training-provider/countries/sao-tome-and-principe.php https://www.nigerianseminarsandtrainings.com/training-provider/sao-tome-and-principe
+
+Redirect 301 /training-provider/countries/senegal https://www.nigerianseminarsandtrainings.com/training-provider/senegal
+Redirect 301 /training-provider/countries/senegal.php https://www.nigerianseminarsandtrainings.com/training-provider/senegal
+
+Redirect 301 /training-provider/countries/seychelles https://www.nigerianseminarsandtrainings.com/training-provider/seychelles
+Redirect 301 /training-provider/countries/seychelles.php https://www.nigerianseminarsandtrainings.com/training-provider/seychelles
+
+Redirect 301 /training-provider/countries/sierra-leone https://www.nigerianseminarsandtrainings.com/training-provider/sierra-leone
+Redirect 301 /training-provider/countries/sierra-leone.php https://www.nigerianseminarsandtrainings.com/training-provider/sierra-leone
+
+Redirect 301 /training-provider/countries/somalia https://www.nigerianseminarsandtrainings.com/training-provider/somalia
+Redirect 301 /training-provider/countries/somalia.php https://www.nigerianseminarsandtrainings.com/training-provider/somalia
+
+Redirect 301 /training-provider/countries/south-africa https://www.nigerianseminarsandtrainings.com/training-provider/south-africa
+Redirect 301 /training-provider/countries/south-africa.php https://www.nigerianseminarsandtrainings.com/training-provider/south-africa
+
+Redirect 301 /training-provider/countries/south-sudan https://www.nigerianseminarsandtrainings.com/training-provider/south-sudan
+Redirect 301 /training-provider/countries/south-sudan.php https://www.nigerianseminarsandtrainings.com/training-provider/south-sudan
+
+Redirect 301 /training-provider/countries/sudan https://www.nigerianseminarsandtrainings.com/training-provider/sudan
+Redirect 301 /training-provider/countries/sudan.php https://www.nigerianseminarsandtrainings.com/training-provider/sudan
+
+Redirect 301 /training-provider/countries/swaziland https://www.nigerianseminarsandtrainings.com/training-provider/swaziland
+Redirect 301 /training-provider/countries/swaziland.php https://www.nigerianseminarsandtrainings.com/training-provider/swaziland
+
+Redirect 301 /training-provider/countries/tanzania https://www.nigerianseminarsandtrainings.com/training-provider/tanzania
+Redirect 301 /training-provider/countries/tanzania.php https://www.nigerianseminarsandtrainings.com/training-provider/tanzania
+
+Redirect 301 /training-provider/countries/togo https://www.nigerianseminarsandtrainings.com/training-provider/togo
+Redirect 301 /training-provider/countries/togo.php https://www.nigerianseminarsandtrainings.com/training-provider/togo
+
+Redirect 301 /training-provider/countries/tunisia https://www.nigerianseminarsandtrainings.com/training-provider/tunisia
+Redirect 301 /training-provider/countries/tunisia.php https://www.nigerianseminarsandtrainings.com/training-provider/tunisia
+
+Redirect 301 /training-provider/countries/uganda https://www.nigerianseminarsandtrainings.com/training-provider/uganda
+Redirect 301 /training-provider/countries/uganda.php https://www.nigerianseminarsandtrainings.com/training-provider/uganda
+
+Redirect 301 /training-provider/countries/zambia https://www.nigerianseminarsandtrainings.com/training-provider/zambia
+Redirect 301 /training-provider/countries/zambia.php https://www.nigerianseminarsandtrainings.com/training-provider/zambia
+
+Redirect 301 /training-provider/countries/zimbabwe https://www.nigerianseminarsandtrainings.com/training-provider/zimbabwe
+Redirect 301 /training-provider/countries/zimbabwe.php https://www.nigerianseminarsandtrainings.com/training-provider/zimbabwe
+
+Redirect 301 /training-provider/countries/afghanistan https://www.nigerianseminarsandtrainings.com/training-provider/afghanistan
+Redirect 301 /training-provider/countries/afghanistan.php https://www.nigerianseminarsandtrainings.com/training-provider/afghanistan
+
+Redirect 301 /training-provider/countries/bahrain https://www.nigerianseminarsandtrainings.com/training-provider/bahrain
+Redirect 301 /training-provider/countries/bahrain.php https://www.nigerianseminarsandtrainings.com/training-provider/bahrain
+
+Redirect 301 /training-provider/countries/bangladesh https://www.nigerianseminarsandtrainings.com/training-provider/bangladesh
+Redirect 301 /training-provider/countries/bangladesh.php https://www.nigerianseminarsandtrainings.com/training-provider/bangladesh
+
+Redirect 301 /training-provider/countries/bhutan https://www.nigerianseminarsandtrainings.com/training-provider/bhutan
+Redirect 301 /training-provider/countries/bhutan.php https://www.nigerianseminarsandtrainings.com/training-provider/bhutan
+
+Redirect 301 /training-provider/countries/brunei https://www.nigerianseminarsandtrainings.com/training-provider/brunei
+Redirect 301 /training-provider/countries/brunei.php https://www.nigerianseminarsandtrainings.com/training-provider/brunei
+
+Redirect 301 /training-provider/countries/burma-myanmar- https://www.nigerianseminarsandtrainings.com/training-provider/burma-myanmar-
+Redirect 301 /training-provider/countries/burma-myanmar-.php https://www.nigerianseminarsandtrainings.com/training-provider/burma-myanmar-
+
+Redirect 301 /training-provider/countries/cambodia https://www.nigerianseminarsandtrainings.com/training-provider/cambodia
+Redirect 301 /training-provider/countries/cambodia.php https://www.nigerianseminarsandtrainings.com/training-provider/cambodia
+
+Redirect 301 /training-provider/countries/china https://www.nigerianseminarsandtrainings.com/training-provider/china
+Redirect 301 /training-provider/countries/china.php https://www.nigerianseminarsandtrainings.com/training-provider/china
+
+Redirect 301 /training-provider/countries/east-timor https://www.nigerianseminarsandtrainings.com/training-provider/east-timor
+Redirect 301 /training-provider/countries/east-timor.php https://www.nigerianseminarsandtrainings.com/training-provider/east-timor
+
+Redirect 301 /training-provider/countries/india https://www.nigerianseminarsandtrainings.com/training-provider/india
+Redirect 301 /training-provider/countries/india.php https://www.nigerianseminarsandtrainings.com/training-provider/india
+
+Redirect 301 /training-provider/countries/indonesia https://www.nigerianseminarsandtrainings.com/training-provider/indonesia
+Redirect 301 /training-provider/countries/indonesia.php https://www.nigerianseminarsandtrainings.com/training-provider/indonesia
+
+Redirect 301 /training-provider/countries/iran https://www.nigerianseminarsandtrainings.com/training-provider/iran
+Redirect 301 /training-provider/countries/iran.php https://www.nigerianseminarsandtrainings.com/training-provider/iran
+
+Redirect 301 /training-provider/countries/iraq https://www.nigerianseminarsandtrainings.com/training-provider/iraq
+Redirect 301 /training-provider/countries/iraq.php https://www.nigerianseminarsandtrainings.com/training-provider/iraq
+
+Redirect 301 /training-provider/countries/israel https://www.nigerianseminarsandtrainings.com/training-provider/israel
+Redirect 301 /training-provider/countries/israel.php https://www.nigerianseminarsandtrainings.com/training-provider/israel
+
+Redirect 301 /training-provider/countries/japan https://www.nigerianseminarsandtrainings.com/training-provider/japan
+Redirect 301 /training-provider/countries/japan.php https://www.nigerianseminarsandtrainings.com/training-provider/japan
+
+Redirect 301 /training-provider/countries/jordan https://www.nigerianseminarsandtrainings.com/training-provider/jordan
+Redirect 301 /training-provider/countries/jordan.php https://www.nigerianseminarsandtrainings.com/training-provider/jordan
+
+Redirect 301 /training-provider/countries/kazakhstan https://www.nigerianseminarsandtrainings.com/training-provider/kazakhstan
+Redirect 301 /training-provider/countries/kazakhstan.php https://www.nigerianseminarsandtrainings.com/training-provider/kazakhstan
+
+Redirect 301 /training-provider/countries/korea-north https://www.nigerianseminarsandtrainings.com/training-provider/korea-north
+Redirect 301 /training-provider/countries/korea-north.php https://www.nigerianseminarsandtrainings.com/training-provider/korea-north
+
+Redirect 301 /training-provider/countries/korea-south https://www.nigerianseminarsandtrainings.com/training-provider/korea-south
+Redirect 301 /training-provider/countries/korea-south.php https://www.nigerianseminarsandtrainings.com/training-provider/korea-south
+
+Redirect 301 /training-provider/countries/kuwait https://www.nigerianseminarsandtrainings.com/training-provider/kuwait
+Redirect 301 /training-provider/countries/kuwait.php https://www.nigerianseminarsandtrainings.com/training-provider/kuwait
+
+Redirect 301 /training-provider/countries/kyrgyzstan https://www.nigerianseminarsandtrainings.com/training-provider/kyrgyzstan
+Redirect 301 /training-provider/countries/kyrgyzstan.php https://www.nigerianseminarsandtrainings.com/training-provider/kyrgyzstan
+
+Redirect 301 /training-provider/countries/laos https://www.nigerianseminarsandtrainings.com/training-provider/laos
+Redirect 301 /training-provider/countries/laos.php https://www.nigerianseminarsandtrainings.com/training-provider/laos
+
+Redirect 301 /training-provider/countries/lebanon https://www.nigerianseminarsandtrainings.com/training-provider/lebanon
+Redirect 301 /training-provider/countries/lebanon.php https://www.nigerianseminarsandtrainings.com/training-provider/lebanon
+
+Redirect 301 /training-provider/countries/malaysia https://www.nigerianseminarsandtrainings.com/training-provider/malaysia
+Redirect 301 /training-provider/countries/malaysia.php https://www.nigerianseminarsandtrainings.com/training-provider/malaysia
+
+Redirect 301 /training-provider/countries/maldives https://www.nigerianseminarsandtrainings.com/training-provider/maldives
+Redirect 301 /training-provider/countries/maldives.php https://www.nigerianseminarsandtrainings.com/training-provider/maldives
+
+Redirect 301 /training-provider/countries/mongolia https://www.nigerianseminarsandtrainings.com/training-provider/mongolia
+Redirect 301 /training-provider/countries/mongolia.php https://www.nigerianseminarsandtrainings.com/training-provider/mongolia
+
+Redirect 301 /training-provider/countries/nepal https://www.nigerianseminarsandtrainings.com/training-provider/nepal
+Redirect 301 /training-provider/countries/nepal.php https://www.nigerianseminarsandtrainings.com/training-provider/nepal
+
+Redirect 301 /training-provider/countries/oman https://www.nigerianseminarsandtrainings.com/training-provider/oman
+Redirect 301 /training-provider/countries/oman.php https://www.nigerianseminarsandtrainings.com/training-provider/oman
+
+Redirect 301 /training-provider/countries/pakistan https://www.nigerianseminarsandtrainings.com/training-provider/pakistan
+Redirect 301 /training-provider/countries/pakistan.php https://www.nigerianseminarsandtrainings.com/training-provider/pakistan
+
+Redirect 301 /training-provider/countries/philippines https://www.nigerianseminarsandtrainings.com/training-provider/philippines
+Redirect 301 /training-provider/countries/philippines.php https://www.nigerianseminarsandtrainings.com/training-provider/philippines
+
+Redirect 301 /training-provider/countries/qatar https://www.nigerianseminarsandtrainings.com/training-provider/qatar
+Redirect 301 /training-provider/countries/qatar.php https://www.nigerianseminarsandtrainings.com/training-provider/qatar
+
+Redirect 301 /training-provider/countries/russian-federation https://www.nigerianseminarsandtrainings.com/training-provider/russian-federation
+Redirect 301 /training-provider/countries/russian-federation.php https://www.nigerianseminarsandtrainings.com/training-provider/russian-federation
+
+Redirect 301 /training-provider/countries/saudi-arabia https://www.nigerianseminarsandtrainings.com/training-provider/saudi-arabia
+Redirect 301 /training-provider/countries/saudi-arabia.php https://www.nigerianseminarsandtrainings.com/training-provider/saudi-arabia
+
+Redirect 301 /training-provider/countries/singapore https://www.nigerianseminarsandtrainings.com/training-provider/singapore
+Redirect 301 /training-provider/countries/singapore.php https://www.nigerianseminarsandtrainings.com/training-provider/singapore
+
+Redirect 301 /training-provider/countries/sri-lanka https://www.nigerianseminarsandtrainings.com/training-provider/sri-lanka
+Redirect 301 /training-provider/countries/sri-lanka.php https://www.nigerianseminarsandtrainings.com/training-provider/sri-lanka
+
+Redirect 301 /training-provider/countries/syria https://www.nigerianseminarsandtrainings.com/training-provider/syria
+Redirect 301 /training-provider/countries/syria.php https://www.nigerianseminarsandtrainings.com/training-provider/syria
+
+Redirect 301 /training-provider/countries/tajikistan https://www.nigerianseminarsandtrainings.com/training-provider/tajikistan
+Redirect 301 /training-provider/countries/tajikistan.php https://www.nigerianseminarsandtrainings.com/training-provider/tajikistan
+
+Redirect 301 /training-provider/countries/thailand https://www.nigerianseminarsandtrainings.com/training-provider/thailand
+Redirect 301 /training-provider/countries/thailand.php https://www.nigerianseminarsandtrainings.com/training-provider/thailand
+
+Redirect 301 /training-provider/countries/turkey https://www.nigerianseminarsandtrainings.com/training-provider/turkey
+Redirect 301 /training-provider/countries/turkey.php https://www.nigerianseminarsandtrainings.com/training-provider/turkey
+
+Redirect 301 /training-provider/countries/turkmenistan https://www.nigerianseminarsandtrainings.com/training-provider/turkmenistan
+Redirect 301 /training-provider/countries/turkmenistan.php https://www.nigerianseminarsandtrainings.com/training-provider/turkmenistan
+
+Redirect 301 /training-provider/countries/united-arab-emirates https://www.nigerianseminarsandtrainings.com/training-provider/united-arab-emirates
+Redirect 301 /training-provider/countries/united-arab-emirates.php https://www.nigerianseminarsandtrainings.com/training-provider/united-arab-emirates
+
+Redirect 301 /training-provider/countries/uzbekistan https://www.nigerianseminarsandtrainings.com/training-provider/uzbekistan
+Redirect 301 /training-provider/countries/uzbekistan.php https://www.nigerianseminarsandtrainings.com/training-provider/uzbekistan
+
+Redirect 301 /training-provider/countries/vietnam https://www.nigerianseminarsandtrainings.com/training-provider/vietnam
+Redirect 301 /training-provider/countries/vietnam.php https://www.nigerianseminarsandtrainings.com/training-provider/vietnam
+
+Redirect 301 /training-provider/countries/yemen https://www.nigerianseminarsandtrainings.com/training-provider/yemen
+Redirect 301 /training-provider/countries/yemen.php https://www.nigerianseminarsandtrainings.com/training-provider/yemen
+
+Redirect 301 /training-provider/countries/albania https://www.nigerianseminarsandtrainings.com/training-provider/albania
+Redirect 301 /training-provider/countries/albania.php https://www.nigerianseminarsandtrainings.com/training-provider/albania
+
+Redirect 301 /training-provider/countries/andorra https://www.nigerianseminarsandtrainings.com/training-provider/andorra
+Redirect 301 /training-provider/countries/andorra.php https://www.nigerianseminarsandtrainings.com/training-provider/andorra
+
+Redirect 301 /training-provider/countries/armenia https://www.nigerianseminarsandtrainings.com/training-provider/armenia
+Redirect 301 /training-provider/countries/armenia.php https://www.nigerianseminarsandtrainings.com/training-provider/armenia
+
+Redirect 301 /training-provider/countries/austria https://www.nigerianseminarsandtrainings.com/training-provider/austria
+Redirect 301 /training-provider/countries/austria.php https://www.nigerianseminarsandtrainings.com/training-provider/austria
+
+Redirect 301 /training-provider/countries/azerbaijan https://www.nigerianseminarsandtrainings.com/training-provider/azerbaijan
+Redirect 301 /training-provider/countries/azerbaijan.php https://www.nigerianseminarsandtrainings.com/training-provider/azerbaijan
+
+Redirect 301 /training-provider/countries/belarus https://www.nigerianseminarsandtrainings.com/training-provider/belarus
+Redirect 301 /training-provider/countries/belarus.php https://www.nigerianseminarsandtrainings.com/training-provider/belarus
+
+Redirect 301 /training-provider/countries/belgium https://www.nigerianseminarsandtrainings.com/training-provider/belgium
+Redirect 301 /training-provider/countries/belgium.php https://www.nigerianseminarsandtrainings.com/training-provider/belgium
+
+Redirect 301 /training-provider/countries/bosnia-and-herzegovina https://www.nigerianseminarsandtrainings.com/training-provider/bosnia-and-herzegovina
+Redirect 301 /training-provider/countries/bosnia-and-herzegovina.php https://www.nigerianseminarsandtrainings.com/training-provider/bosnia-and-herzegovina
+
+Redirect 301 /training-provider/countries/bulgaria https://www.nigerianseminarsandtrainings.com/training-provider/bulgaria
+Redirect 301 /training-provider/countries/bulgaria.php https://www.nigerianseminarsandtrainings.com/training-provider/bulgaria
+
+Redirect 301 /training-provider/countries/croatia https://www.nigerianseminarsandtrainings.com/training-provider/croatia
+Redirect 301 /training-provider/countries/croatia.php https://www.nigerianseminarsandtrainings.com/training-provider/croatia
+
+Redirect 301 /training-provider/countries/cyprus https://www.nigerianseminarsandtrainings.com/training-provider/cyprus
+Redirect 301 /training-provider/countries/cyprus.php https://www.nigerianseminarsandtrainings.com/training-provider/cyprus
+
+Redirect 301 /training-provider/countries/czech-republic https://www.nigerianseminarsandtrainings.com/training-provider/czech-republic
+Redirect 301 /training-provider/countries/czech-republic.php https://www.nigerianseminarsandtrainings.com/training-provider/czech-republic
+
+Redirect 301 /training-provider/countries/denmark https://www.nigerianseminarsandtrainings.com/training-provider/denmark
+Redirect 301 /training-provider/countries/denmark.php https://www.nigerianseminarsandtrainings.com/training-provider/denmark
+
+Redirect 301 /training-provider/countries/estonia https://www.nigerianseminarsandtrainings.com/training-provider/estonia
+Redirect 301 /training-provider/countries/estonia.php https://www.nigerianseminarsandtrainings.com/training-provider/estonia
+
+Redirect 301 /training-provider/countries/finland https://www.nigerianseminarsandtrainings.com/training-provider/finland
+Redirect 301 /training-provider/countries/finland.php https://www.nigerianseminarsandtrainings.com/training-provider/finland
+
+Redirect 301 /training-provider/countries/france https://www.nigerianseminarsandtrainings.com/training-provider/france
+Redirect 301 /training-provider/countries/france.php https://www.nigerianseminarsandtrainings.com/training-provider/france
+
+Redirect 301 /training-provider/countries/georgia https://www.nigerianseminarsandtrainings.com/training-provider/georgia
+Redirect 301 /training-provider/countries/georgia.php https://www.nigerianseminarsandtrainings.com/training-provider/georgia
+
+Redirect 301 /training-provider/countries/germany https://www.nigerianseminarsandtrainings.com/training-provider/germany
+Redirect 301 /training-provider/countries/germany.php https://www.nigerianseminarsandtrainings.com/training-provider/germany
+
+Redirect 301 /training-provider/countries/greece https://www.nigerianseminarsandtrainings.com/training-provider/greece
+Redirect 301 /training-provider/countries/greece.php https://www.nigerianseminarsandtrainings.com/training-provider/greece
+
+Redirect 301 /training-provider/countries/hungary https://www.nigerianseminarsandtrainings.com/training-provider/hungary
+Redirect 301 /training-provider/countries/hungary.php https://www.nigerianseminarsandtrainings.com/training-provider/hungary
+
+Redirect 301 /training-provider/countries/iceland https://www.nigerianseminarsandtrainings.com/training-provider/iceland
+Redirect 301 /training-provider/countries/iceland.php https://www.nigerianseminarsandtrainings.com/training-provider/iceland
+
+Redirect 301 /training-provider/countries/ireland https://www.nigerianseminarsandtrainings.com/training-provider/ireland
+Redirect 301 /training-provider/countries/ireland.php https://www.nigerianseminarsandtrainings.com/training-provider/ireland
+
+Redirect 301 /training-provider/countries/italy https://www.nigerianseminarsandtrainings.com/training-provider/italy
+Redirect 301 /training-provider/countries/italy.php https://www.nigerianseminarsandtrainings.com/training-provider/italy
+
+Redirect 301 /training-provider/countries/latvia https://www.nigerianseminarsandtrainings.com/training-provider/latvia
+Redirect 301 /training-provider/countries/latvia.php https://www.nigerianseminarsandtrainings.com/training-provider/latvia
+
+Redirect 301 /training-provider/countries/liechtenstein https://www.nigerianseminarsandtrainings.com/training-provider/liechtenstein
+Redirect 301 /training-provider/countries/liechtenstein.php https://www.nigerianseminarsandtrainings.com/training-provider/liechtenstein
+
+Redirect 301 /training-provider/countries/lithuania https://www.nigerianseminarsandtrainings.com/training-provider/lithuania
+Redirect 301 /training-provider/countries/lithuania.php https://www.nigerianseminarsandtrainings.com/training-provider/lithuania
+
+Redirect 301 /training-provider/countries/luxembourg https://www.nigerianseminarsandtrainings.com/training-provider/luxembourg
+Redirect 301 /training-provider/countries/luxembourg.php https://www.nigerianseminarsandtrainings.com/training-provider/luxembourg
+
+Redirect 301 /training-provider/countries/macedonia https://www.nigerianseminarsandtrainings.com/training-provider/macedonia
+Redirect 301 /training-provider/countries/macedonia.php https://www.nigerianseminarsandtrainings.com/training-provider/macedonia
+
+Redirect 301 /training-provider/countries/malta https://www.nigerianseminarsandtrainings.com/training-provider/malta
+Redirect 301 /training-provider/countries/malta.php https://www.nigerianseminarsandtrainings.com/training-provider/malta
+
+Redirect 301 /training-provider/countries/moldova https://www.nigerianseminarsandtrainings.com/training-provider/moldova
+Redirect 301 /training-provider/countries/moldova.php https://www.nigerianseminarsandtrainings.com/training-provider/moldova
+
+Redirect 301 /training-provider/countries/monaco https://www.nigerianseminarsandtrainings.com/training-provider/monaco
+Redirect 301 /training-provider/countries/monaco.php https://www.nigerianseminarsandtrainings.com/training-provider/monaco
+
+Redirect 301 /training-provider/countries/montenegro https://www.nigerianseminarsandtrainings.com/training-provider/montenegro
+Redirect 301 /training-provider/countries/montenegro.php https://www.nigerianseminarsandtrainings.com/training-provider/montenegro
+
+Redirect 301 /training-provider/countries/netherlands https://www.nigerianseminarsandtrainings.com/training-provider/netherlands
+Redirect 301 /training-provider/countries/netherlands.php https://www.nigerianseminarsandtrainings.com/training-provider/netherlands
+
+Redirect 301 /training-provider/countries/norway https://www.nigerianseminarsandtrainings.com/training-provider/norway
+Redirect 301 /training-provider/countries/norway.php https://www.nigerianseminarsandtrainings.com/training-provider/norway
+
+Redirect 301 /training-provider/countries/poland https://www.nigerianseminarsandtrainings.com/training-provider/poland
+Redirect 301 /training-provider/countries/poland.php https://www.nigerianseminarsandtrainings.com/training-provider/poland
+
+Redirect 301 /training-provider/countries/portugal https://www.nigerianseminarsandtrainings.com/training-provider/portugal
+Redirect 301 /training-provider/countries/portugal.php https://www.nigerianseminarsandtrainings.com/training-provider/portugal
+
+Redirect 301 /training-provider/countries/romania https://www.nigerianseminarsandtrainings.com/training-provider/romania
+Redirect 301 /training-provider/countries/romania.php https://www.nigerianseminarsandtrainings.com/training-provider/romania
+
+Redirect 301 /training-provider/countries/san-marino https://www.nigerianseminarsandtrainings.com/training-provider/san-marino
+Redirect 301 /training-provider/countries/san-marino.php https://www.nigerianseminarsandtrainings.com/training-provider/san-marino
+
+Redirect 301 /training-provider/countries/serbia https://www.nigerianseminarsandtrainings.com/training-provider/serbia
+Redirect 301 /training-provider/countries/serbia.php https://www.nigerianseminarsandtrainings.com/training-provider/serbia
+
+Redirect 301 /training-provider/countries/slovakia https://www.nigerianseminarsandtrainings.com/training-provider/slovakia
+Redirect 301 /training-provider/countries/slovakia.php https://www.nigerianseminarsandtrainings.com/training-provider/slovakia
+
+Redirect 301 /training-provider/countries/slovenia https://www.nigerianseminarsandtrainings.com/training-provider/slovenia
+Redirect 301 /training-provider/countries/slovenia.php https://www.nigerianseminarsandtrainings.com/training-provider/slovenia
+
+Redirect 301 /training-provider/countries/spain https://www.nigerianseminarsandtrainings.com/training-provider/spain
+Redirect 301 /training-provider/countries/spain.php https://www.nigerianseminarsandtrainings.com/training-provider/spain
+
+Redirect 301 /training-provider/countries/sweden https://www.nigerianseminarsandtrainings.com/training-provider/sweden
+Redirect 301 /training-provider/countries/sweden.php https://www.nigerianseminarsandtrainings.com/training-provider/sweden
+
+Redirect 301 /training-provider/countries/switzerland https://www.nigerianseminarsandtrainings.com/training-provider/switzerland
+Redirect 301 /training-provider/countries/switzerland.php https://www.nigerianseminarsandtrainings.com/training-provider/switzerland
+
+Redirect 301 /training-provider/countries/ukraine https://www.nigerianseminarsandtrainings.com/training-provider/ukraine
+Redirect 301 /training-provider/countries/ukraine.php https://www.nigerianseminarsandtrainings.com/training-provider/ukraine
+
+Redirect 301 /training-provider/countries/united-kingdom https://www.nigerianseminarsandtrainings.com/training-provider/united-kingdom
+Redirect 301 /training-provider/countries/united-kingdom.php https://www.nigerianseminarsandtrainings.com/training-provider/united-kingdom
+
+Redirect 301 /training-provider/countries/vatican-city https://www.nigerianseminarsandtrainings.com/training-provider/vatican-city
+Redirect 301 /training-provider/countries/vatican-city.php https://www.nigerianseminarsandtrainings.com/training-provider/vatican-city
+
+Redirect 301 /training-provider/countries/antigua-and-barbuda https://www.nigerianseminarsandtrainings.com/training-provider/antigua-and-barbuda
+Redirect 301 /training-provider/countries/antigua-and-barbuda.php https://www.nigerianseminarsandtrainings.com/training-provider/antigua-and-barbuda
+
+Redirect 301 /training-provider/countries/bahamas https://www.nigerianseminarsandtrainings.com/training-provider/bahamas
+Redirect 301 /training-provider/countries/bahamas.php https://www.nigerianseminarsandtrainings.com/training-provider/bahamas
+
+Redirect 301 /training-provider/countries/barbados https://www.nigerianseminarsandtrainings.com/training-provider/barbados
+Redirect 301 /training-provider/countries/barbados.php https://www.nigerianseminarsandtrainings.com/training-provider/barbados
+
+Redirect 301 /training-provider/countries/belize https://www.nigerianseminarsandtrainings.com/training-provider/belize
+Redirect 301 /training-provider/countries/belize.php https://www.nigerianseminarsandtrainings.com/training-provider/belize
+
+Redirect 301 /training-provider/countries/canada https://www.nigerianseminarsandtrainings.com/training-provider/canada
+Redirect 301 /training-provider/countries/canada.php https://www.nigerianseminarsandtrainings.com/training-provider/canada
+
+Redirect 301 /training-provider/countries/costa-rica https://www.nigerianseminarsandtrainings.com/training-provider/costa-rica
+Redirect 301 /training-provider/countries/costa-rica.php https://www.nigerianseminarsandtrainings.com/training-provider/costa-rica
+
+Redirect 301 /training-provider/countries/cuba https://www.nigerianseminarsandtrainings.com/training-provider/cuba
+Redirect 301 /training-provider/countries/cuba.php https://www.nigerianseminarsandtrainings.com/training-provider/cuba
+
+Redirect 301 /training-provider/countries/dominica https://www.nigerianseminarsandtrainings.com/training-provider/dominica
+Redirect 301 /training-provider/countries/dominica.php https://www.nigerianseminarsandtrainings.com/training-provider/dominica
+
+Redirect 301 /training-provider/countries/dominican-republic https://www.nigerianseminarsandtrainings.com/training-provider/dominican-republic
+Redirect 301 /training-provider/countries/dominican-republic.php https://www.nigerianseminarsandtrainings.com/training-provider/dominican-republic
+
+Redirect 301 /training-provider/countries/el-salvador https://www.nigerianseminarsandtrainings.com/training-provider/el-salvador
+Redirect 301 /training-provider/countries/el-salvador.php https://www.nigerianseminarsandtrainings.com/training-provider/el-salvador
+
+Redirect 301 /training-provider/countries/grenada https://www.nigerianseminarsandtrainings.com/training-provider/grenada
+Redirect 301 /training-provider/countries/grenada.php https://www.nigerianseminarsandtrainings.com/training-provider/grenada
+
+Redirect 301 /training-provider/countries/guatemala https://www.nigerianseminarsandtrainings.com/training-provider/guatemala
+Redirect 301 /training-provider/countries/guatemala.php https://www.nigerianseminarsandtrainings.com/training-provider/guatemala
+
+Redirect 301 /training-provider/countries/haiti https://www.nigerianseminarsandtrainings.com/training-provider/haiti
+Redirect 301 /training-provider/countries/haiti.php https://www.nigerianseminarsandtrainings.com/training-provider/haiti
+
+Redirect 301 /training-provider/countries/honduras https://www.nigerianseminarsandtrainings.com/training-provider/honduras
+Redirect 301 /training-provider/countries/honduras.php https://www.nigerianseminarsandtrainings.com/training-provider/honduras
+
+Redirect 301 /training-provider/countries/jamaica https://www.nigerianseminarsandtrainings.com/training-provider/jamaica
+Redirect 301 /training-provider/countries/jamaica.php https://www.nigerianseminarsandtrainings.com/training-provider/jamaica
+
+Redirect 301 /training-provider/countries/mexico https://www.nigerianseminarsandtrainings.com/training-provider/mexico
+Redirect 301 /training-provider/countries/mexico.php https://www.nigerianseminarsandtrainings.com/training-provider/mexico
+
+Redirect 301 /training-provider/countries/nicaragua https://www.nigerianseminarsandtrainings.com/training-provider/nicaragua
+Redirect 301 /training-provider/countries/nicaragua.php https://www.nigerianseminarsandtrainings.com/training-provider/nicaragua
+
+Redirect 301 /training-provider/countries/panama https://www.nigerianseminarsandtrainings.com/training-provider/panama
+Redirect 301 /training-provider/countries/panama.php https://www.nigerianseminarsandtrainings.com/training-provider/panama
+
+Redirect 301 /training-provider/countries/saint-kitts-and-nevis https://www.nigerianseminarsandtrainings.com/training-provider/saint-kitts-and-nevis
+Redirect 301 /training-provider/countries/saint-kitts-and-nevis.php https://www.nigerianseminarsandtrainings.com/training-provider/saint-kitts-and-nevis
+
+Redirect 301 /training-provider/countries/saint-lucia https://www.nigerianseminarsandtrainings.com/training-provider/saint-lucia
+Redirect 301 /training-provider/countries/saint-lucia.php https://www.nigerianseminarsandtrainings.com/training-provider/saint-lucia
+
+Redirect 301 /training-provider/countries/saint-vincent-and-the-grenadines https://www.nigerianseminarsandtrainings.com/training-provider/saint-vincent-and-the-grenadines
+Redirect 301 /training-provider/countries/saint-vincent-and-the-grenadines.php https://www.nigerianseminarsandtrainings.com/training-provider/saint-vincent-and-the-grenadines
+
+Redirect 301 /training-provider/countries/trinidad-and-tobago https://www.nigerianseminarsandtrainings.com/training-provider/trinidad-and-tobago
+Redirect 301 /training-provider/countries/trinidad-and-tobago.php https://www.nigerianseminarsandtrainings.com/training-provider/trinidad-and-tobago
+
+Redirect 301 /training-provider/countries/united-states https://www.nigerianseminarsandtrainings.com/training-provider/united-states
+Redirect 301 /training-provider/countries/united-states.php https://www.nigerianseminarsandtrainings.com/training-provider/united-states
+
+Redirect 301 /training-provider/countries/australia https://www.nigerianseminarsandtrainings.com/training-provider/australia
+Redirect 301 /training-provider/countries/australia.php https://www.nigerianseminarsandtrainings.com/training-provider/australia
+
+Redirect 301 /training-provider/countries/fiji https://www.nigerianseminarsandtrainings.com/training-provider/fiji
+Redirect 301 /training-provider/countries/fiji.php https://www.nigerianseminarsandtrainings.com/training-provider/fiji
+
+Redirect 301 /training-provider/countries/kiribati https://www.nigerianseminarsandtrainings.com/training-provider/kiribati
+Redirect 301 /training-provider/countries/kiribati.php https://www.nigerianseminarsandtrainings.com/training-provider/kiribati
+
+Redirect 301 /training-provider/countries/marshall-islands https://www.nigerianseminarsandtrainings.com/training-provider/marshall-islands
+Redirect 301 /training-provider/countries/marshall-islands.php https://www.nigerianseminarsandtrainings.com/training-provider/marshall-islands
+
+Redirect 301 /training-provider/countries/micronesia https://www.nigerianseminarsandtrainings.com/training-provider/micronesia
+Redirect 301 /training-provider/countries/micronesia.php https://www.nigerianseminarsandtrainings.com/training-provider/micronesia
+
+Redirect 301 /training-provider/countries/nauru https://www.nigerianseminarsandtrainings.com/training-provider/nauru
+Redirect 301 /training-provider/countries/nauru.php https://www.nigerianseminarsandtrainings.com/training-provider/nauru
+
+Redirect 301 /training-provider/countries/new-zealand https://www.nigerianseminarsandtrainings.com/training-provider/new-zealand
+Redirect 301 /training-provider/countries/new-zealand.php https://www.nigerianseminarsandtrainings.com/training-provider/new-zealand
+
+Redirect 301 /training-provider/countries/palau https://www.nigerianseminarsandtrainings.com/training-provider/palau
+Redirect 301 /training-provider/countries/palau.php https://www.nigerianseminarsandtrainings.com/training-provider/palau
+
+Redirect 301 /training-provider/countries/papua-new-guinea https://www.nigerianseminarsandtrainings.com/training-provider/papua-new-guinea
+Redirect 301 /training-provider/countries/papua-new-guinea.php https://www.nigerianseminarsandtrainings.com/training-provider/papua-new-guinea
+
+Redirect 301 /training-provider/countries/samoa https://www.nigerianseminarsandtrainings.com/training-provider/samoa
+Redirect 301 /training-provider/countries/samoa.php https://www.nigerianseminarsandtrainings.com/training-provider/samoa
+
+Redirect 301 /training-provider/countries/solomon-islands https://www.nigerianseminarsandtrainings.com/training-provider/solomon-islands
+Redirect 301 /training-provider/countries/solomon-islands.php https://www.nigerianseminarsandtrainings.com/training-provider/solomon-islands
+
+Redirect 301 /training-provider/countries/tonga https://www.nigerianseminarsandtrainings.com/training-provider/tonga
+Redirect 301 /training-provider/countries/tonga.php https://www.nigerianseminarsandtrainings.com/training-provider/tonga
+
+Redirect 301 /training-provider/countries/tuvalu https://www.nigerianseminarsandtrainings.com/training-provider/tuvalu
+Redirect 301 /training-provider/countries/tuvalu.php https://www.nigerianseminarsandtrainings.com/training-provider/tuvalu
+
+Redirect 301 /training-provider/countries/vanuatu https://www.nigerianseminarsandtrainings.com/training-provider/vanuatu
+Redirect 301 /training-provider/countries/vanuatu.php https://www.nigerianseminarsandtrainings.com/training-provider/vanuatu
+
+Redirect 301 /training-provider/countries/argentina https://www.nigerianseminarsandtrainings.com/training-provider/argentina
+Redirect 301 /training-provider/countries/argentina.php https://www.nigerianseminarsandtrainings.com/training-provider/argentina
+
+Redirect 301 /training-provider/countries/bolivia https://www.nigerianseminarsandtrainings.com/training-provider/bolivia
+Redirect 301 /training-provider/countries/bolivia.php https://www.nigerianseminarsandtrainings.com/training-provider/bolivia
+
+Redirect 301 /training-provider/countries/brazil https://www.nigerianseminarsandtrainings.com/training-provider/brazil
+Redirect 301 /training-provider/countries/brazil.php https://www.nigerianseminarsandtrainings.com/training-provider/brazil
+
+Redirect 301 /training-provider/countries/chile https://www.nigerianseminarsandtrainings.com/training-provider/chile
+Redirect 301 /training-provider/countries/chile.php https://www.nigerianseminarsandtrainings.com/training-provider/chile
+
+Redirect 301 /training-provider/countries/colombia https://www.nigerianseminarsandtrainings.com/training-provider/colombia
+Redirect 301 /training-provider/countries/colombia.php https://www.nigerianseminarsandtrainings.com/training-provider/colombia
+
+Redirect 301 /training-provider/countries/ecuador https://www.nigerianseminarsandtrainings.com/training-provider/ecuador
+Redirect 301 /training-provider/countries/ecuador.php https://www.nigerianseminarsandtrainings.com/training-provider/ecuador
+
+Redirect 301 /training-provider/countries/guyana https://www.nigerianseminarsandtrainings.com/training-provider/guyana
+Redirect 301 /training-provider/countries/guyana.php https://www.nigerianseminarsandtrainings.com/training-provider/guyana
+
+Redirect 301 /training-provider/countries/paraguay https://www.nigerianseminarsandtrainings.com/training-provider/paraguay
+Redirect 301 /training-provider/countries/paraguay.php https://www.nigerianseminarsandtrainings.com/training-provider/paraguay
+
+Redirect 301 /training-provider/countries/peru https://www.nigerianseminarsandtrainings.com/training-provider/peru
+Redirect 301 /training-provider/countries/peru.php https://www.nigerianseminarsandtrainings.com/training-provider/peru
+
+Redirect 301 /training-provider/countries/suriname https://www.nigerianseminarsandtrainings.com/training-provider/suriname
+Redirect 301 /training-provider/countries/suriname.php https://www.nigerianseminarsandtrainings.com/training-provider/suriname
+
+Redirect 301 /training-provider/countries/uruguay https://www.nigerianseminarsandtrainings.com/training-provider/uruguay
+Redirect 301 /training-provider/countries/uruguay.php https://www.nigerianseminarsandtrainings.com/training-provider/uruguay
+
+Redirect 301 /training-provider/countries/venezuela https://www.nigerianseminarsandtrainings.com/training-provider/venezuela
+Redirect 301 /training-provider/countries/venezuela.php https://www.nigerianseminarsandtrainings.com/training-provider/venezuela
+
+# New Training Provider Redirects for States
+
+Redirect 301 /training-provider/states/abia https://www.nigerianseminarsandtrainings.com/training-provider/abia
+Redirect 301 /training-provider/states/abia.php https://www.nigerianseminarsandtrainings.com/training-provider/abia
+
+Redirect 301 /training-provider/states/abuja https://www.nigerianseminarsandtrainings.com/training-provider/abuja
+Redirect 301 /training-provider/states/abuja.php https://www.nigerianseminarsandtrainings.com/training-provider/abuja
+
+Redirect 301 /training-provider/states/adamawa https://www.nigerianseminarsandtrainings.com/training-provider/adamawa
+Redirect 301 /training-provider/states/adamawa.php https://www.nigerianseminarsandtrainings.com/training-provider/adamawa
+
+Redirect 301 /training-provider/states/akwa-ibom https://www.nigerianseminarsandtrainings.com/training-provider/akwa-ibom
+Redirect 301 /training-provider/states/akwa-ibom.php https://www.nigerianseminarsandtrainings.com/training-provider/akwa-ibom
+
+Redirect 301 /training-provider/states/anambra https://www.nigerianseminarsandtrainings.com/training-provider/anambra
+Redirect 301 /training-provider/states/anambra.php https://www.nigerianseminarsandtrainings.com/training-provider/anambra
+
+Redirect 301 /training-provider/states/bauchi https://www.nigerianseminarsandtrainings.com/training-provider/bauchi
+Redirect 301 /training-provider/states/bauchi.php https://www.nigerianseminarsandtrainings.com/training-provider/bauchi
+
+Redirect 301 /training-provider/states/bayelsa https://www.nigerianseminarsandtrainings.com/training-provider/bayelsa
+Redirect 301 /training-provider/states/bayelsa.php https://www.nigerianseminarsandtrainings.com/training-provider/bayelsa
+
+Redirect 301 /training-provider/states/benue https://www.nigerianseminarsandtrainings.com/training-provider/benue
+Redirect 301 /training-provider/states/benue.php https://www.nigerianseminarsandtrainings.com/training-provider/benue
+
+Redirect 301 /training-provider/states/borno https://www.nigerianseminarsandtrainings.com/training-provider/borno
+Redirect 301 /training-provider/states/borno.php https://www.nigerianseminarsandtrainings.com/training-provider/borno
+
+Redirect 301 /training-provider/states/cross-river https://www.nigerianseminarsandtrainings.com/training-provider/cross-river
+Redirect 301 /training-provider/states/cross-river.php https://www.nigerianseminarsandtrainings.com/training-provider/cross-river
+
+Redirect 301 /training-provider/states/delta https://www.nigerianseminarsandtrainings.com/training-provider/delta
+Redirect 301 /training-provider/states/delta.php https://www.nigerianseminarsandtrainings.com/training-provider/delta
+
+Redirect 301 /training-provider/states/ebonyi https://www.nigerianseminarsandtrainings.com/training-provider/ebonyi
+Redirect 301 /training-provider/states/ebonyi.php https://www.nigerianseminarsandtrainings.com/training-provider/ebonyi
+
+Redirect 301 /training-provider/states/edo https://www.nigerianseminarsandtrainings.com/training-provider/edo
+Redirect 301 /training-provider/states/edo.php https://www.nigerianseminarsandtrainings.com/training-provider/edo
+
+Redirect 301 /training-provider/states/ekiti https://www.nigerianseminarsandtrainings.com/training-provider/ekiti
+Redirect 301 /training-provider/states/ekiti.php https://www.nigerianseminarsandtrainings.com/training-provider/ekiti
+
+Redirect 301 /training-provider/states/enugu https://www.nigerianseminarsandtrainings.com/training-provider/enugu
+Redirect 301 /training-provider/states/enugu.php https://www.nigerianseminarsandtrainings.com/training-provider/enugu
+
+Redirect 301 /training-provider/states/gombe https://www.nigerianseminarsandtrainings.com/training-provider/gombe
+Redirect 301 /training-provider/states/gombe.php https://www.nigerianseminarsandtrainings.com/training-provider/gombe
+
+Redirect 301 /training-provider/states/imo https://www.nigerianseminarsandtrainings.com/training-provider/imo
+Redirect 301 /training-provider/states/imo.php https://www.nigerianseminarsandtrainings.com/training-provider/imo
+
+Redirect 301 /training-provider/states/jigawa https://www.nigerianseminarsandtrainings.com/training-provider/jigawa
+Redirect 301 /training-provider/states/jigawa.php https://www.nigerianseminarsandtrainings.com/training-provider/jigawa
+
+Redirect 301 /training-provider/states/kaduna https://www.nigerianseminarsandtrainings.com/training-provider/kaduna
+Redirect 301 /training-provider/states/kaduna.php https://www.nigerianseminarsandtrainings.com/training-provider/kaduna
+
+Redirect 301 /training-provider/states/kano https://www.nigerianseminarsandtrainings.com/training-provider/kano
+Redirect 301 /training-provider/states/kano.php https://www.nigerianseminarsandtrainings.com/training-provider/kano
+
+Redirect 301 /training-provider/states/katsina https://www.nigerianseminarsandtrainings.com/training-provider/katsina
+Redirect 301 /training-provider/states/katsina.php https://www.nigerianseminarsandtrainings.com/training-provider/katsina
+
+Redirect 301 /training-provider/states/kebbi https://www.nigerianseminarsandtrainings.com/training-provider/kebbi
+Redirect 301 /training-provider/states/kebbi.php https://www.nigerianseminarsandtrainings.com/training-provider/kebbi
+
+Redirect 301 /training-provider/states/kogi https://www.nigerianseminarsandtrainings.com/training-provider/kogi
+Redirect 301 /training-provider/states/kogi.php https://www.nigerianseminarsandtrainings.com/training-provider/kogi
+
+Redirect 301 /training-provider/states/kwara https://www.nigerianseminarsandtrainings.com/training-provider/kwara
+Redirect 301 /training-provider/states/kwara.php https://www.nigerianseminarsandtrainings.com/training-provider/kwara
+
+Redirect 301 /training-provider/states/lagos https://www.nigerianseminarsandtrainings.com/training-provider/lagos
+Redirect 301 /training-provider/states/lagos.php https://www.nigerianseminarsandtrainings.com/training-provider/lagos
+
+Redirect 301 /training-provider/states/nasarawa https://www.nigerianseminarsandtrainings.com/training-provider/nasarawa
+Redirect 301 /training-provider/states/nasarawa.php https://www.nigerianseminarsandtrainings.com/training-provider/nasarawa
+
+Redirect 301 /training-provider/states/niger https://www.nigerianseminarsandtrainings.com/training-provider/niger-st
+Redirect 301 /training-provider/states/niger.php https://www.nigerianseminarsandtrainings.com/training-provider/niger-st
+
+Redirect 301 /training-provider/states/ogun https://www.nigerianseminarsandtrainings.com/training-provider/ogun
+Redirect 301 /training-provider/states/ogun.php https://www.nigerianseminarsandtrainings.com/training-provider/ogun
+
+Redirect 301 /training-provider/states/ondo https://www.nigerianseminarsandtrainings.com/training-provider/ondo
+Redirect 301 /training-provider/states/ondo.php https://www.nigerianseminarsandtrainings.com/training-provider/ondo
+
+Redirect 301 /training-provider/states/osun https://www.nigerianseminarsandtrainings.com/training-provider/osun
+Redirect 301 /training-provider/states/osun.php https://www.nigerianseminarsandtrainings.com/training-provider/osun
+
+Redirect 301 /training-provider/states/oyo https://www.nigerianseminarsandtrainings.com/training-provider/oyo
+Redirect 301 /training-provider/states/oyo.php https://www.nigerianseminarsandtrainings.com/training-provider/oyo
+
+Redirect 301 /training-provider/states/plateau https://www.nigerianseminarsandtrainings.com/training-provider/plateau
+Redirect 301 /training-provider/states/plateau.php https://www.nigerianseminarsandtrainings.com/training-provider/plateau
+
+Redirect 301 /training-provider/states/rivers https://www.nigerianseminarsandtrainings.com/training-provider/rivers
+Redirect 301 /training-provider/states/rivers.php https://www.nigerianseminarsandtrainings.com/training-provider/rivers
+
+Redirect 301 /training-provider/states/sokoto https://www.nigerianseminarsandtrainings.com/training-provider/sokoto
+Redirect 301 /training-provider/states/sokoto.php https://www.nigerianseminarsandtrainings.com/training-provider/sokoto
+
+Redirect 301 /training-provider/states/taraba https://www.nigerianseminarsandtrainings.com/training-provider/taraba
+Redirect 301 /training-provider/states/taraba.php https://www.nigerianseminarsandtrainings.com/training-provider/taraba
+
+Redirect 301 /training-provider/states/yobe https://www.nigerianseminarsandtrainings.com/training-provider/yobe
+Redirect 301 /training-provider/states/yobe.php https://www.nigerianseminarsandtrainings.com/training-provider/yobe
+
+Redirect 301 /training-provider/states/zamfara https://www.nigerianseminarsandtrainings.com/training-provider/zamfara
+Redirect 301 /training-provider/states/zamfara.php https://www.nigerianseminarsandtrainings.com/training-provider/zamfara
+
+# END OF NEW TRAININGS PROVIDERS REDIRECTS
+

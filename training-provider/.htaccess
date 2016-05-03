@@ -1,0 +1,19 @@
+ErrorDocument 404 http://localhost/nigerianseminars/404error.php
+
+#Prevent Directory Listing
+Options All -Indexes
+
+#Hide Server signature
+ServerSignature off
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC]
+
+RewriteRule  ^admin-secretarial administrative-secretarial.php [NC]
+
+#RewriteRule ^nigeria/([^/]+)/?$ nigeria.php?filter=$1 [NC,L]

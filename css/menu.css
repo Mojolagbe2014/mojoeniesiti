@@ -1,0 +1,269 @@
+/**
+ *********************************************
+ * Prototype of styles for horizontal CSS-menu
+ * @data 25.01.2010
+ *********************************************
+ * (X)HTML-scheme:
+ *  <div id="menu">
+ *      <ul class="menu">
+ *          <li><a href="#" class="parent"><span>level 1</span></a>
+ *              <div><ul>
+ *                  <li><a href="#" class="parent"><span>level 2</span></a>
+ *                      <div><ul><li><a href="#"><span>level 3</span></a></li></ul></div>
+ *                  </li>
+ *              </ul></div>
+ *          </li>
+ *          <li class="last"><a href="#"><span>level 1</span></a></li>
+ *      </ul>
+ *  </div>
+ *********************************************
+ */
+
+/* menu::base */
+div#menu {
+	width:150px;
+	background:transparent url(../images/header_bg.gif) repeat-x 0 0;
+	text-transform: uppercase;
+	font-size: 10px;
+	float: right;
+}
+
+#menu {
+    position:relative;
+    z-index:100;
+    height:43px;
+}
+#menu .menu {
+	position:absolute;
+	background: url(../images/header.gif) right top no-repeat;
+}
+#menu * {
+    list-style:none;
+    border:0;
+    padding:0;
+    margin:0;
+}
+#menu a {
+	display:block;
+	white-space:nowrap;
+	padding-top: 14px;
+	padding-right: 13px;
+	padding-bottom: 0px;
+	padding-left: 13px;
+	width: auto;
+}
+#menu li {
+    float:left;
+    background:#fff;
+}
+#menu li li {
+    float:none;
+}
+#menu div {
+    visibility:hidden;
+    position:absolute;
+    background:url(../images/pix.gif);
+}
+#menu div div {
+    margin:-35px 0 0 -1px;
+    left:100%;
+}
+#menu div div div {
+    margin:-35px 0 0 -1px;
+    left:100%;
+}
+#menu li:hover>div { visibility:visible; }
+
+/* menu::special styles */
+/* menu::level 1 */
+#menu a {
+    text-decoration:none;
+    color:#ffffff;/*1*/
+    position:relative;
+    z-index:77;
+}
+#menu a:hover {
+    background:url(../images/header.gif) left -43px repeat-x;
+    color:#FFF;
+}
+#menu a:hover span { color:#060; }
+#menu li.current a {
+    background: transparent url(../images/header_active.gif) repeat-x;
+    color:#3C4955;
+}
+#menu li.current span {
+    color:#3C4955;
+}
+#menu>ul>li:hover>a {
+	color:#060;
+	background-image: url(../images/header.gif);
+	background-repeat: repeat-x;
+	background-position: left -43px;
+}
+#menu>ul>li:hover>a span { color:#060; }
+#menu span {
+    text-transform:uppercase;
+  
+    letter-spacing:0.3em;
+    text-decoration:none;
+    color:#ffffff;
+}
+#menu li { background: url(../images/header.gif) left top no-repeat;}
+/* menu::level >= 2 */
+#menu ul ul {width: 150px;}
+#menu li li{
+	  background:#FF9000;
+	  border-bottom:1px solid #FFAB3E;}
+#menu li li a {
+	position:static;
+	white-space:normal;
+	text-align: center;
+	color:#FFF;
+	padding:0;
+	text-transform:none;
+	width: 100%;
+	background-color: #00CC00;
+}
+#menu li.current li a {
+    background: none;
+    color:#FFF;
+}
+#menu li.current li span {
+    color:#FFF;
+}
+#menu li li a:hover {
+	background-color: #00CC00;
+}
+#menu li li a span { color:#fff; line-height: 15px; padding: 10px;	}
+#menu li li a:hover span { color:#060; }
+#menu li li a.parent span{background:transparent url(../images/arrow.gif) no-repeat scroll right 50%; z-index:10;  }
+
+#menu li li span {
+    display:block;
+    text-transform:none;
+    padding:0px 25px 0px 0px;
+    font-size:11px;
+    letter-spacing: 0;
+}
+
+div#menu_top2{
+	top:40px;
+	left:0px;
+	width:100%;
+	background:transparent url(../images/header_bg.gif) repeat-x 0 0;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+#menu_top2 {
+    z-index:100;
+    height:43px;
+}
+#menu_top2 .menu_top2 {
+	position:absolute;
+	background: url(../images/header.gif) right top no-repeat;
+}
+#menu_top2 * {
+    list-style:none;
+    border:0;
+    padding:0;
+    margin:0;
+}
+#menu_top2 a {
+    display:block;
+    padding:15px 14px 14px 14px;
+    white-space:nowrap;
+}
+#menu_top2 li {
+    float:left;
+    background:#fff;
+}
+#menu_top2 li li {
+    float:none;
+}
+#menu_top2 div {
+    visibility:hidden;
+    position:absolute;
+    background:url(../images/pix.gif);
+}
+#menu_top2 div div {
+    margin:-35px 0 0 -1px;
+    left:100%;
+}
+#menu_top2 div div div {
+    margin:-35px 0 0 -1px;
+    left:100%;
+}
+#menu_top2 li:hover>div { visibility:visible; }
+
+/* menu_top2::special styles */
+/* menu_top2::level 1 */
+#menu_top2 a {
+    text-decoration:none;
+    color:#ffffff;/*1*/
+    position:relative;
+    z-index:77;
+}
+#menu_top2 a:hover {
+    background:url(../images/header.gif) left -43px repeat-x;
+    color:#FFF;
+}
+#menu_top2 a:hover span { color:#FFF; }
+#menu_top2 li.current a {
+    background: transparent url(../images/header_active.gif) repeat-x;
+    color:#3C4955;
+}
+#menu_top2 li.current span {
+    color:#3C4955;
+}
+#menu_top2>ul>li:hover>a {
+	color:#CACFD3;
+	background-image: url(../images/header.gif);
+	background-repeat: repeat-x;
+	background-position: left -43px;
+}
+#menu_top2>ul>li:hover>a span { color:#FFF; }
+#menu_top2 span {
+    text-transform:uppercase;
+  
+    letter-spacing:0.3em;
+    text-decoration:none;
+    color:#ffffff;
+}
+#menu_top2 li { background: url(../images/header.gif) left top no-repeat;}
+/* menu_top2::level >= 2 */
+#menu_top2 ul ul {width: 150px;}
+#menu_top2 li li{
+	  background:#FF9000;
+	  border-bottom:1px solid #FFAB3E;}
+#menu_top2 li li a {
+	position:static;
+	white-space:normal;
+	text-align: center;
+	color:#FFF;
+	padding:0;
+	text-transform:none;
+	width: 100%;
+	background-color: #00CC00;
+}
+#menu_top2 li.current li a {
+    background: none;
+    color:#FFF;
+}
+#menu_top2 li.current li span {
+    color:#FFF;
+}
+#menu_top2 li li a:hover {
+	background-color: #00CC00;
+}
+#menu_top2 li li a span { color:#fff; line-height: 15px; padding: 10px;	}
+#menu_top2 li li a:hover span { color:#ffffff; }
+#menu_top2 li li a.parent span{background:transparent url(../images/arrow.gif) no-repeat scroll right 50%; z-index:10;  }
+
+#menu_top2 li li span {
+    display:block;
+    text-transform:none;
+    padding:0px 25px 0px 0px;
+    font-size:11px;
+    letter-spacing: 0;
+}

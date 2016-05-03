@@ -1,0 +1,26 @@
+ErrorDocument 404 /error404.php
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
+
+RewriteRule ^([^/]+)/([^/]+)/([0-9]+)/?$ $1.php?$2=$3 [NC,L]
+
+RewriteRule ^login/([^/]+)/?$ login.php?login=$1 [NC,L]
+
+RewriteRule ^news/([0-9]+)/?$ news.php?news_id=$1 [NC,L]
+
+RewriteRule ^events/([0-9]+)/detail/?$ event_detail.php?detail=$1 [NC,L]
+
+RewriteRule ^events/([^/]+)/?$ all_event.php [NC,L]
+
+RewriteRule ^events/all/([^/]+)/([0-9]+)/?$ all_event.php?page=$2 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/?$ all_event.php?category=$1 [NC,L]
+
+RewriteRule ^events/categories/([0-9]+)/([^/]+)/([A-Za-z0-9-]+)/([0-9]+)/?$ all_event.php?category=$1&page=$4 [NC,L]
+

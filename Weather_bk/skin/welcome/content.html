@@ -1,0 +1,21 @@
+<div class="content {$weather}">
+	<div class="contentSearch">
+		<div class="contentSearchLeft">
+			<div class="contentSearchTitle">Search a city</div>
+			<input type="text" id="search" value="e.g.: London, UK"/>
+		</div>
+		<div class="format"><a href="https://www.nigerianseminarsandtrainings.com/weather?f={$f}" class="button" title="Current format: <strong>{$cfname}</strong><despartitor></despartitor>Change to: <strong>{$fname}</strong>">{$cf}&deg;</a></div>
+		<div class="format"><a href="{$fav}" class="button" title="Add <strong>{$city}</strong> to favorites. {$notLogged}">&hearts;</a></div>
+	</div>
+	
+	<div class="weatherCurrent">
+		<div class="dayCurrent">Right Now</div>
+		<div class="cityCurrent">{$city}</div>
+		<div class="tempCurrent">{$temp}</div>
+		Humidity
+		<div class="humidityCurrent">{$humidity}</div><br />
+		Wind
+		<div class="windCurrent">{$wind}</div>
+	</div>
+	{$rows}
+</div>

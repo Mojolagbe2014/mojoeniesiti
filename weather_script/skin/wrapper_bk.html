@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+{$header}
+<title>{$title}</title>
+{$description}
+<meta name="google-site-verification" content="QgoBcQh1N6hNfArQ2NtHztZVCMWbAdHIfDzP7tC05Vw" />
+<link rel="shortcut icon" href="{$url}/favicon.ico" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript" src="{$url}/js/jquery.js"></script>
+<script type="text/javascript" src="{$url}/js/jquery.tipsy.js"></script>
+<script src="{$url}/js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript"> 
+$(document).ready(function() {
+	$('#search').keypress(function(x){if(x.keyCode==13){q=$(this).val();if(q!=this.defaultValue){document.location='{$url}/?city='+q}}});
+	$('#search').focus(function(){if($(this).val()==this.defaultValue)$(this).val('')});
+	$('#search').blur(function(){if($(this).val()=='')$(this).val(this.defaultValue)});
+	
+	$('.button, .avatar').tipsy({gravity:'s', fade:1, html: true, opacity: 1});
+});
+</script>
+</head>
+<body>
+<div id="content">
+	<div class="headerMenu">
+		<a href="{$url}/">Home</a>
+		<a href="{$url}/index.php?a=user">{$userStatus}</a>
+		{$welcomeStatus}
+	</div>
+	{$content}
+</div>
+<div class="footer">
+	Copyright &copy; {$year} {$footer}. All rights reserved. - Images provided by <a href="http://aurelm.com" target="_blank">Aurel Manea</a>.<br />
+	<a href="{$url}/tos" target="_blank">Terms and Conditions</a> - <a href="{$url}/privacy" target="_blank">Privacy Policy</a> - <a href="{$url}/disclaimer" target="_blank">Disclaimer</a> - <a href="{$url}/contact" target="_blank">Contact</a> - <a href="{$url}/index.php?a=admin">Admin</a>
+</div>
+</body>
+</html>

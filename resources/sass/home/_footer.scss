@@ -1,0 +1,66 @@
+#home {
+	.menu_footer {
+		background-color:#33454e;
+		border:0;
+	}//end style for menu_footer
+
+	#fb-connect {
+		text-align:center;
+		margin-top:10px;
+	}//end style for fb-connect
+	
+	#copyright-text {
+		width:40%;
+		margin-left: -17%;
+		.response {
+			margin-left: -3.5%;
+		}//end style for response inside copyright-text
+	}//end style for copyright-text
+
+	#inter {
+		height:50%; 
+		margin-right: 1%;
+	}//end style for inter
+
+	.paypal-img {
+		margin-right:1%
+	}//end style for paypal-img
+
+	#googleplay img{
+		margin-right: 1%;
+		height:50%;
+		margin-top:10px;
+	}// end style for img inside googleplay id
+
+	#w3c {
+		position: relative;
+	  top: -2%; 
+	  left: 1%;
+		img {
+			height: 50%; 
+			width: 11%;
+		}//end style for img inside w3c id
+	}//end style for w3c
+
+	.hidele {
+		#fb {
+			color:#003399 !important;
+		}//end style for fb
+
+		#twitter {
+		color:#3CF !important;
+		}//end style for twitter
+
+		#pint {
+			color:red !important;
+		}//end style for pint
+
+		#rssfeed {
+			color:orange !important;
+		}//end style for rssfeed
+
+		.gplus {
+			color:#F00 !important;
+		}//end style for gplus
+	}//end hidele style
+}

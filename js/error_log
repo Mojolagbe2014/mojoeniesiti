@@ -1,0 +1,2 @@
+[01-Jul-2013 08:53:41 America/Denver] PHP Warning:  require_once(scripts/config.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/nst1/public_html/js/login.php on line 3
+[01-Jul-2013 08:53:41 America/Denver] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'scripts/config.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nst1/public_html/js/login.php on line 3
