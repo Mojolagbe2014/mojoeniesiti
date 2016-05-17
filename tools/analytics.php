@@ -7,3 +7,11 @@
 /** * Function that tracks a click on an outbound link in Google Analytics. This function takes a valid URL string as an argument, and uses that URL string as the event label. */
 var trackOutboundLink = function(url) { ga('send', 'event', 'outbound', 'click', url, {'hitCallback': function () { /*document.location = url; */ } }); }
 </script> 
+<!-- Google adsen for mobile -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8065984041001502",
+    enable_page_level_ads: true
+  });
+</script>
